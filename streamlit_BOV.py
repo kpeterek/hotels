@@ -11,8 +11,6 @@ import numpy as np
 import pydeck
 import os
 
-os.chdir(r"D:\KyleP\Coding\Work Scripts")
-
 import DodgeData as dd
 
 
@@ -25,9 +23,9 @@ st.write('''
          All the hotel data you can handle bro!''')
          
 
-df = pd.read_csv(r"C:\Users\KyleP\Box\YB Hotels\__BOVs\2021\Snapshot of Current BOVs 2021-03-29.csv")
-dodge_pipeline = pd.read_pickle(r'C:\Users\KyleP\Box\YB Hotels\CBRE Hotels Pipeline Data\Dodge Data\pipeline.pkl')
-dodge_census = pd.read_pickle(r'C:\Users\KyleP\Box\YB Hotels\CBRE Hotels Pipeline Data\Dodge Data\census.pkl')
+
+dodge_pipeline = pd.read_pickle('data\pipeline.pkl')
+dodge_census = pd.read_pickle('data\census_light.pkl')
 
 states = dodge_pipeline.State.str.replace(" ","").dropna().unique()
 
