@@ -9,10 +9,8 @@ import time
 import pandas as pd
 import os
 import numpy as np
-from tkinter import *
 import geopandas as gpd
 from geopy.distance import geodesic
-# import geoplot
 import matplotlib.pyplot as plt
 
 
