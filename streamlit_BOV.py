@@ -24,8 +24,8 @@ st.write('''
          
 
 
-dodge_pipeline = pd.read_pickle(r'data\pipeline.pkl')
-dodge_census = pd.read_pickle(r'data\census_light.pkl')
+dodge_pipeline = pd.read_pickle('pipeline.pkl')
+dodge_census = pd.read_pickle('census_light.pkl')
 
 states = dodge_pipeline.State.str.replace(" ","").dropna().unique()
 
