@@ -37,7 +37,7 @@ def newsupply(STR,radius=7,filter_by = 'radius'):
             new_supply.query('distance <= @radius',inplace= True)
             output_text = str(f'Within a {radius} mile radius of {prop_name}:')
         elif filter_input == 'city':
-            new_supply = new_supply.query('City == @prop_city & Submarket == @SubTract')
+            new_supply = new_supply.query('City == @prop_city')
             output_text = str(f"Based on {prop_city}'s (city) pipeline of {prop_name}: ")
         elif filter_input == 'market':
             new_supply = new_supply.query('Market == @SubMkt')
