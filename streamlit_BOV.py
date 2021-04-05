@@ -56,7 +56,7 @@ if radius == " ":
 
 submit = st.sidebar.button('run new supply')
 if submit:
-    data = dd.newsupply(float(star),radius,st_filter)
+    data = dd.newsupply(float(star),radius=7.0,st_filter)
     
 
 # st.write('run a radius sample',dd.newsupply(star))
