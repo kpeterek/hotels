@@ -28,8 +28,9 @@ st.write('''
          
          All the hotel data you can handle bro!''')
 
-hotels,stars = (dodge_pipeline.Property.str.replace(" ","").dropna().unique(),dodge_pipeline.StarID.str.replace(" ","").dropna().unique()
+hotels,stars = (dodge_pipeline.Property.str.replace(" ","").dropna().unique(),dodge_pipeline.StarID.str.replace(" ","").dropna().unique())
 
+                
 # markets = 1
 # brands= dodge_pipeline.Chain.dropna().unique()
 
@@ -45,7 +46,6 @@ hotel = st.sidebar.selectbox('Select Hotel',hotels)
 # st.write(state)
 # st.write(brand)
 
-census = dodge 
 data = dodge_pipeline[['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude']]
 
 star = st.sidebar.text_input('Enter Star ID')
