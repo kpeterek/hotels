@@ -13,6 +13,7 @@ import os
 import geopandas as gpd
 from geopy.distance import geodesic
 import time
+import DodgeData as dd
 
 cols_needed = ['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude','distance','sort']
 cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','OpenDate','Latitude','Longitude','distance']
@@ -47,12 +48,12 @@ states = dodge_pipeline.State.str.replace(" ","").dropna().unique()
 data = dodge_pipeline[['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude']]
 
 star = st.sidebar.text_input('Enter Star ID')
-filter_by = st.sidebar.selectbox('Filter by?', ['radius','tract','city'])
+st_filter = st.sidebar.selectbox('Filter by?', ['radius','tract','city'])
 radius = st.sidebar.text_input('Radius?')
 
 submit = st.sidebar.button('run new supply')
 if submit:
-    data = newsupply(int(star),float(radius),filter_by)
+    data = newsupply(float(star),float(radius),st_filter)
     
 
 # st.write('run a radius sample',dd.newsupply(star))
@@ -62,7 +63,6 @@ st.write(data.dropna())
 
 # button_clicked = st.sidebar.button("OK")
 
-data.rename(columns = {'Latitude':'lat','Longitude':'lon'},inplace=True)
 data.dropna(inplace=True)
 
 st.map(data)
