@@ -53,7 +53,7 @@ radius = st.sidebar.text_input('Radius?')
 
 submit = st.sidebar.button('run new supply')
 if submit:
-    data = newsupply(float(star),float(radius),st_filter)
+    data = dd.newsupply(float(star),float(radius),st_filter)
     
 
 # st.write('run a radius sample',dd.newsupply(star))
@@ -63,6 +63,8 @@ st.write(data.dropna())
 
 # button_clicked = st.sidebar.button("OK")
 
+
+data.rename(columns = {'Latitude':'lat','Longitude':'lon'},inplace=True)
 data.dropna(inplace=True)
 
 st.map(data)
