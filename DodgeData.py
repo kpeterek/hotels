@@ -13,7 +13,8 @@ import geopandas as gpd
 from geopy.distance import geodesic
 
 
-
+cols_needed = ['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude','distance','sort']
+cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','OpenDate','Latitude','Longitude','distance']
 
 def newsupply(STR,radius=7,filter_by = 'radius'):
     # STR = int(input('Enter the Subject Property STR Number?: '))
