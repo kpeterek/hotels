@@ -15,30 +15,6 @@ from geopy.distance import geodesic
 
 
 
-def update_dodge():
-    os.chdir(r"C:\Users\KyleP\Box\YB Hotels\CBRE Hotels Pipeline Data\Dodge Data")
-    dodge_census = pd.read_excel(r"Hotel Census and Pipeline US and Canada.xlsx", sheet_name = 'Census')
-    dodge_pipeline = pd.read_excel(r"Hotel Census and Pipeline US and Canada.xlsx", sheet_name = 'Pipeline')
-    dodge_pipeline = dodge_pipeline.to_pickle('pipeline.pkl')
-    dodge_census = dodge_census.to_pickle('census.pkl')
-
-
-
-def get_dodge_data_new_supply():
-    dodge_pipeline = pd.read_pickle(r'C:\Users\KyleP\Box\YB Hotels\CBRE Hotels Pipeline Data\Dodge Data\pipeline.pkl')
-    cols_needed = ['Title','Address','City','State','PostalCode','Market','Submarket','Units','Target Open Date','Phase','Latitude','Longitude']
-    return dodge_pipeline[cols_needed]
-    
-    
-def get_dodge_data_census():
-    dodge_census = pd.read_pickle(r'C:\Users\KyleP\Box\YB Hotels\CBRE Hotels Pipeline Data\Dodge Data\census.pkl')
-    cols_exist = ['StarID','Property','Address','City','State','postalcode','Market','Submarket','Rooms','OpenDate','Latitude','Longitude']
-    return dodge_census[cols_exist]
-
-    # =============================================================================
-# Testing Radius function
-# =============================================================================
-
 def newsupply(STR,radius=7,filter_by = 'radius'):
     # STR = int(input('Enter the Subject Property STR Number?: '))
     # radius = 40.0
@@ -56,7 +32,7 @@ def newsupply(STR,radius=7,filter_by = 'radius'):
         new_supply['Lat,Lon'] = list(zip(new_supply['Latitude'],new_supply['Longitude']))
         new_supply['Lat,Lon'].to_clipboard()
         new_supply['distance'] = [geodesic(coords_subj,new_supply['Lat,Lon'].loc[new_supply.index == x]).miles for x in new_supply.index]
-        new_supply.to_clipboard()
+        #new_supply.to_clipboard()
         filter_input = filter_by
         if filter_input == 'radius':
             new_supply.query('distance <= @radius',inplace= True)
@@ -78,35 +54,8 @@ def newsupply(STR,radius=7,filter_by = 'radius'):
         
 
 
+ 
 
-
-def str_comps():
-    cols_exist = ['StarID','Property','Address','City,St','postalcode','Rooms','OpenDate','Latitude','Longitude']
-    props = input('lookup: ')
-    dodge_census = pd.read_pickle(r"C:\Users\KyleP\Box\YB Hotels\CBRE Hotels Pipeline Data\Dodge Data\census.pkl")
-    lst_prop = props.split()
-    df = pd.DataFrame()
-    df = dodge_census[dodge_census['StarID'].isin(lst_prop)]    
-    df['City,St'] = df[['City','State']].apply(lambda x: ', '.join(x), axis = 1)
-    df[cols_exist].to_clipboard(sep=",",header = True,index =False)   
-
-def str_city():
-    prop = input('lookup: ')
-    # prop_city = dodge_census['City'][dodge_census['StarID'] == prop].iloc[:,].item()
-    dodge_census = pd.read_pickle(r"C:\Users\KyleP\Box\YB Hotels\CBRE Hotels Pipeline Data\Dodge Data\census.pkl")
-    df = pd.DataFrame()
-    df = dodge_census[dodge_census['City'] == dodge_census['City'][dodge_census['StarID'] == prop].iloc[:,].item()]  
-    df[cols_exist].to_clipboard(sep=",",header = True,index =False)      
-    
-    
-
-def str_search():
-    search = str(input('what would you like to search: '))
-    ret_df = dodge_census[['StarID','Property','Address','City','State','Rooms','OpenDate']]
-    ret_df['Property']
-    ret_df = ret_df[(ret_df['Property'].str.contains(search,case=False)) | (ret_df['Address'].str.contains(search,case=False))]
-    ret_df.to_clipboard(sep = ',', header = None)
-    print(ret_df)
     
     
 def compset(STR,radius):
@@ -138,19 +87,7 @@ def compset(STR,radius):
     distance_df.columns
     output_df = distance_df[cols_exist]
     output_df.sort_values('distance',ascending = True,inplace=True)
-    output_df.to_clipboard()
-    if output_df.empty:
-        print('There are no incoming properties. Thank you')
-    else:
-        # print('Mean: \n',new_supply[['Units','Phase']].groupby('Phase').mean(),'\n',"TOTAL                 ",int(new_supply['Units'].dropna().sum()),'\n\n')
-        # print('Total: \n',new_supply[['Title','Phase']].groupby('Phase').count(),'\n',"AVERAGE               ",int(new_supply['Units'].isnull().count()),'\n\n')
-        print(output_df.iloc[:,:-1],'\n\n')
-        time.sleep(1)
-        output_df.groupby(['Phase'],sort=False)['Units'].sum().astype('int').to_clipboard(sep=',',header = None,index= True)
-        print('      ',output_text,'\n')
-        print('                Total Incoming Properties: ',distance_df['Units'].count(
-            ),'\n                Total Incoming Rooms: ',int(distance_df['Units'].sum()),'\n\n')
-        # root.bell()
-        time.sleep(1)
+    return output_df
+
         
   
