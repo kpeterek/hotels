@@ -48,7 +48,7 @@ def newsupply(STR,radius=7,filter_by = 'radius'):
     if (dodge_census[dodge_census['StarID'] == STR]).any(axis=None) == True:
         prop_name = dodge_census['Property'][dodge_census['StarID'] == STR].iloc[:,].item()
         prop_city = dodge_census['City'][dodge_census['StarID'] == STR].iloc[:,].item()
-        coords_subj = str(dodge_census.iloc[:,38][dodge_census['StarID'] == STR].iloc[:,].item()),str(dodge_census.iloc[:,39][dodge_census['StarID'] == STR].iloc[:,].item())
+        coords_subj = str(dodge_census['Latitude'][dodge_census['StarID'] == STR].iloc[:,].item()),str(dodge_census['Longitude'][dodge_census['StarID'] == STR].iloc[:,].item())
         phase_sort = {phases[0]:0,phases[1]:2,phases[2]:1}
         SubTract = dodge_census['Submarket'].loc[dodge_census['StarID'] == STR].iloc[:,].item()
         SubMkt = dodge_census['Market'].loc[dodge_census['StarID'] == STR].iloc[:,].item()
