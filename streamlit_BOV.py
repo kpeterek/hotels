@@ -28,7 +28,7 @@ st.write('''
          
          All the hotel data you can handle bro!''')
 
-hotels,stars = (dodge_pipeline.Property.str.replace(" ","").dropna().unique(),dodge_pipeline.StarID.str.replace(" ","").dropna().unique())
+hotels,stars = (dodge_census.Property.dropna().unique(),dodge_census.StarID.astype(str).str.replace(" ","").dropna().unique())
 
                 
 # markets = 1
