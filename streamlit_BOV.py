@@ -16,7 +16,8 @@ import time
 
 cols_needed = ['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude','distance','sort']
 cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','OpenDate','Latitude','Longitude','distance']
-
+dodge_pipeline = pd.read_csv('pipeline.csv')
+dodge_census = pd.read_csv('census.csv')
 
 st.title('Explore Your Hotels!!!')
 
