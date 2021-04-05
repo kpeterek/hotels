@@ -30,8 +30,8 @@ cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms',
 def newsupply(STR,radius=7,filter_by = 'radius'):
     # STR = int(input('Enter the Subject Property STR Number?: '))
     # radius = 40.0
-    dodge_pipeline = pd.read_pickle(r'C:\Users\KyleP\Box\YB Hotels\CBRE Hotels Pipeline Data\Dodge Data\pipeline.pkl')
-    dodge_census = pd.read_pickle(r'C:\Users\KyleP\Box\YB Hotels\CBRE Hotels Pipeline Data\Dodge Data\census.pkl')
+    dodge_pipeline = pd.read_pickle('data\pipeline.pkl')
+    dodge_census = pd.read_pickle('data\census_light.pkl')
     phases = ['Underway','Planning','Final Planning']
     if (dodge_census[dodge_census['StarID'] == STR]).any(axis=None) == True:
         prop_name = dodge_census['Property'][dodge_census['StarID'] == STR].iloc[:,].item()
