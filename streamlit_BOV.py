@@ -109,13 +109,13 @@ data = dodge_pipeline[['Title','Address','City','State','PostalCode','Units','Ta
 
 
 
-star = int(st.sidebar.text_input('Enter Star ID'))
+star = st.sidebar.text_input('Enter Star ID')
 filter_by = st.sidebar.selectbox('Filter by?', ['radius','tract','city'])
-radius = int(st.sidebar.text_input('Radius?'))
+radius = st.sidebar.text_input('Radius?')
 
 submit = st.sidebar.button('run new supply')
 if submit:
-    data = newsupply(int(star),radius,filter_by)
+    data = newsupply(star,radius,filter_by)
     
     
 # st.write('run a radius sample',dd.newsupply(star))
