@@ -115,7 +115,7 @@ radius = st.sidebar.text_input('Radius?')
 
 submit = st.sidebar.button('run new supply')
 if submit:
-    data = newsupply(int(star),radius=int(radius),filter_by=filter_by)
+    data = newsupply(int(star),radius,filter_by)
     
     
 # st.write('run a radius sample',dd.newsupply(star))
