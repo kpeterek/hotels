@@ -28,7 +28,7 @@ st.write('''
          
          All the hotel data you can handle bro!''')
 
-hotels,stars = (dodge_census.Property.dropna().unique(),dodge_census.StarID.astype(str).str.replace(" ","").dropna().unique())
+name_str = pd.DataFrame(dodge_census[['Property','StarID']])
 
                 
 # markets = 1
@@ -36,8 +36,8 @@ hotels,stars = (dodge_census.Property.dropna().unique(),dodge_census.StarID.asty
 
 # stars = dodge_census.StarID.dropna().unique()
 
-hotel = st.sidebar.selectbox('Select Hotel',hotels)
-
+hotel = st.sidebar.selectbox('Select Hotel',name_str['Property')
+st.write(hotel, ' has the StarID of ',name_str[name_str.Property == hotel]['StarID'].item())
 # market = st.sidebar.selectbox('Select Market',dodge_pipeline[dodge_pipeline.State == state]['Submarket'].dropna().unique())
 
 # brand = st.sidebar.selectbox('Select brand',brands)
