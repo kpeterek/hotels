@@ -51,7 +51,8 @@ data = dodge_pipeline[['Title','Address','City','State','PostalCode','Units','Ta
 star = st.sidebar.text_input('Enter Star ID')
 st_filter = st.sidebar.selectbox('Filter by?', ['radius','tract','city'])
 radius = st.sidebar.text_input('Radius?')
-radius = radius.replace(" ","")
+if radius == " ":
+         del radius
 
 submit = st.sidebar.button('run new supply')
 if submit:
