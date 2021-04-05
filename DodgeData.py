@@ -30,9 +30,7 @@ def newsupply(STR,radius=7,filter_by = 'radius'):
         SubMkt = dodge_census['Market'].loc[dodge_census['StarID'] == STR].iloc[:,].item()
         new_supply = dodge_pipeline.loc[(dodge_pipeline['Phase'].isin(list(phases)))].dropna(subset=['Latitude','Longitude'])
         new_supply['Lat,Lon'] = list(zip(new_supply['Latitude'],new_supply['Longitude']))
-        new_supply['Lat,Lon'].to_clipboard()
         new_supply['distance'] = [geodesic(coords_subj,new_supply['Lat,Lon'].loc[new_supply.index == x]).miles for x in new_supply.index]
-        #new_supply.to_clipboard()
         filter_input = filter_by
         if filter_input == 'radius':
             new_supply.query('distance <= @radius',inplace= True)
