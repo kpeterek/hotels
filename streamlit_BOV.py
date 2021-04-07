@@ -14,6 +14,7 @@ import geopandas as gpd
 from geopy.distance import geodesic
 import time
 import DodgeData as dd
+from typing import Dict
 
 cols_needed = ['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude','distance','sort']
 cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','OpenDate','Latitude','Longitude','distance']
