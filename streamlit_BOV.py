@@ -73,3 +73,5 @@ data.rename(columns = {'Latitude':'lat','Longitude':'lon'},inplace=True)
 data.dropna(inplace=True)
 
 st.map(data)
+
+file_data = st.file_uploader("Upload a STR doc", type=([".xlsx",".xls"]))
