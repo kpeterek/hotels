@@ -75,9 +75,9 @@ data.dropna(inplace=True)
 
 st.map(data)
 
-file_data = st.file_uploader("Upload a STR doc", type=([".xlsx",".xls"]))
+#file_data = st.file_uploader("Upload a STR doc", type=([".xlsx",".xls"]))
 
-st.write(file_data)
+#st.write(file_data)
 
 @st.cache(allow_output_mutation=True)
 
