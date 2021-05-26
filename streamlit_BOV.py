@@ -15,6 +15,7 @@ from geopy.distance import geodesic
 import time
 import DodgeData as dd
 from typing import Dict
+import base64
 
 cols_needed = ['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude','distance','sort']
 cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','OpenDate','Latitude','Longitude','distance']
@@ -75,6 +76,13 @@ data.dropna(inplace=True)
 
 st.map(data)
 
+st.header("File Download")
+
+csv = data.to_csv(index=False)
+b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
+href = f'<a href="data:file/csv;base64,{b64}">Download CSV File</a> (right-click and save as &lt;some_name&gt;.csv)'
+st.markdown(href, unsafe_allow_html=True)
+
 #file_data = st.file_uploader("Upload a STR doc", type=([".xlsx",".xls"]))
 
 #st.write(file_data)
@@ -111,3 +119,5 @@ def main():
     if st.checkbox("Show content of files?"):
         for value in static_store.values():
             st.code(value)
+                  
+
