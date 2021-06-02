@@ -93,20 +93,6 @@ b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversi
 href = f'<a href="data:file/csv;base64,{b64}">Download CSV File</a> (right-click and save as &lt;some_name&gt;.csv)'
 st.markdown(href, unsafe_allow_html=True)
 
-#file_data = st.file_uploader("Upload a STR doc", type=([".xlsx",".xls"]))
-st.subheader('STR Compilation')
-
-multiple_files = st.file_uploader(
-    "Multiple File Uploader",
-    accept_multiple_files=True
-)
-for file in multiple_files:
-    file_container = st.beta_expander(
-        f"File name: {file.name} ({file.size}b)"
-    )
-    file_container.write(file.getvalue())
-
-
                   
 def star_data_input(files):
     cols = [0,1,2,3,5,6,7,8,12,13,14,15,17,18,19,20,24,25,26,27,29,30,31,32,34]
@@ -182,7 +168,7 @@ def xldownload(df):
 
 # Main panel
 if st.sidebar.button('Submit'):
-    #@st.cache
+    @st.cache
     df = star_data_input(uploaded_file)
     st.header('**Merged data**')
     st.write(df)
