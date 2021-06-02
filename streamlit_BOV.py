@@ -116,11 +116,11 @@ def main():
     if st.checkbox("Show file list?", True):
         st.write(list(static_store.keys()))
     if st.checkbox("Run Compile?"):
-        data2 = star_data_input(list(static_store.keys()))
+        data2 = star_data_input(result)
 
 main()
                   
-def star_data_input(files):
+def star_data_input(files:list):
     cols = [0,1,2,3,5,6,7,8,12,13,14,15,17,18,19,20,24,25,26,27,29,30,31,32,34]
     star_df = pd.DataFrame()
     comp_set = pd.DataFrame()
