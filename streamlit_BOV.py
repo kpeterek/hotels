@@ -84,6 +84,7 @@ href = f'<a href="data:file/csv;base64,{b64}">Download CSV File</a> (right-click
 st.markdown(href, unsafe_allow_html=True)
 
 #file_data = st.file_uploader("Upload a STR doc", type=([".xlsx",".xls"]))
+st.subheader('STR Compilation')
 
 @st.cache(allow_output_mutation=True)
 def get_static_store() -> Dict:
@@ -113,7 +114,7 @@ def main():
     if st.checkbox("Show file list?", True):
         st.write(list(static_store.keys()))
     if st.checkbox("Run Compile?"):
-        data2 = star_data_input(static_store.values())
+        data2 = star_data_input(static_store)
 
 main()
                   
