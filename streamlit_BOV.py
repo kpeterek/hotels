@@ -115,10 +115,8 @@ def main():
         static_store.clear()
     if st.checkbox("Show file list?", True):
         st.write(list(static_store.keys()))
-    if st.checkbox("Show content of files?"):
-        for value in static_store.values():
-            st.code(value)
-
+    if st.checkbox("Run Compile?"):
+        data2 = star_data_input(static_store)
 
 main()
                   
