@@ -103,7 +103,6 @@ def star_data_input(files):
         for file in f.namelist():
             xlfile = archive.open(file)
             if file.endswith('.xlsx'):
-                print(file)
                 try:
                     date = pd.to_datetime(pd.read_excel(xlfile,sheet_name='Glance',skiprows=4).iloc[0,1],
                                           infer_datetime_format=True)+MonthEnd(1)
