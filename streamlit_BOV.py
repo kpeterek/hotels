@@ -83,8 +83,6 @@ b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversi
 href = f'<a href="data:file/csv;base64,{b64}">Download CSV File</a> (right-click and save as &lt;some_name&gt;.csv)'
 st.markdown(href, unsafe_allow_html=True)
 
-st.file_uploader(label='load STR data here',type=['.xls','.xlsx'])
-
 #file_data = st.file_uploader("Upload a STR doc", type=([".xlsx",".xls"]))
 
 #st.write(file_data)
