@@ -98,7 +98,7 @@ for file in multiple_files:
     )
     file_container.write(file.getvalue())
 
-st.write("### Code")
+st.write(star_data_input(multiple_files))
                   
 def star_data_input(files:list):
     cols = [0,1,2,3,5,6,7,8,12,13,14,15,17,18,19,20,24,25,26,27,29,30,31,32,34]
