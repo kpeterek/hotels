@@ -85,9 +85,6 @@ st.markdown(href, unsafe_allow_html=True)
 
 #file_data = st.file_uploader("Upload a STR doc", type=([".xlsx",".xls"]))
 
-st.write(static_store)
-
-
 @st.cache(allow_output_mutation=True)
 def get_static_store() -> Dict:
     """This dictionary is initialized once and can be used to store the files uploaded"""
@@ -116,7 +113,7 @@ def main():
     if st.checkbox("Show file list?", True):
         st.write(list(static_store.keys()))
     if st.checkbox("Run Compile?"):
-        data2 = star_data_input(static_store)
+        data2 = star_data_input(static_store.keys())
 
 main()
                   
