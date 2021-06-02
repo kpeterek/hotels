@@ -115,6 +115,8 @@ def main():
         static_store.clear()
     if st.checkbox("Show file list?", True):
         st.write(list(static_store.keys()))
+        file_details = {"Filename":data_file.name,"FileType":data_file.type,"FileSize":data_file.size}
+        st.write(file_details)
     if st.checkbox("Run Compile?"):
         data2 = star_data_input(static_store)
 
