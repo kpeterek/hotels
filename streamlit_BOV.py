@@ -123,3 +123,4 @@ def main():
 main()
                   
 
+st.write(static_store)
