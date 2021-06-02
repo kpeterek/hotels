@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 """
+Created on Wed Jun  2 12:22:56 2021
+
+@author: KyleP
+"""
+
+# -*- coding: utf-8 -*-
+"""
 Created on Fri Apr  2 15:08:30 2021
 
 @author: KyleP
@@ -99,9 +106,6 @@ for file in multiple_files:
     )
     file_container.write(file.getvalue())
 
-submit2 = st.button('Run STR Compile')
-if submit2:
-    data2 = star_data_input(file_container)
 
 
                   
@@ -109,8 +113,8 @@ def star_data_input(files):
     cols = [0,1,2,3,5,6,7,8,12,13,14,15,17,18,19,20,24,25,26,27,29,30,31,32,34]
     star_df = pd.DataFrame()
     comp_set = pd.DataFrame()
-    archive = zipfile.ZipFile(zip_file_name, 'r')
-    with zipfile.ZipFile(zip_file_name, "r") as f:
+    archive = zipfile.ZipFile(files, 'r')
+    with zipfile.ZipFile(files, "r") as f:
         for file in f.namelist():
           xlfile = archive.open(file)
           if file.endswith(['.xlsx','.xls']):
@@ -129,15 +133,15 @@ def star_data_input(files):
                      comp_set = comp_set.append(comps).drop_duplicates().sort_index(ascending=True)
                  except:
                      pass
-         star_df = star_df.append(star).drop_duplicates().sort_index(ascending=True)
-         comp_set = comp_set.append(comps).drop_duplicates().sort_index(ascending=True)
-         star_df = star_df.iloc[:,cols]
-         # star_df['StarID'] = sub_prop
-         # star_df.columns = ['RevPAR_my_prop','RevPAR_comp','ADR_my_prop','ADR_comp','OCC_my_prop','OCC_comp','StarID']
-         star_df.iloc[:,4:6] = star_df.iloc[:,4:6]/100
-         star_df.to_clipboard(header=False)
-         star_df.columns = ['OCC_my_prop','OCC_comp','OCC_Index','OCC_Rank', 'OCC_per_chg_my_prop','OCC_per_chg_comp','OCC_per_chg_index','OCC_per_chg_rank','ADR_my_prop','ADR_comp','ADR_Index','ADR_Rank','ADR_per_chg_my_prop','ADR_per_chg_comp','ADR_per_chg_index','ADR_per_chg_rank','RevPAR_my_prop','RevPAR_comp','RevPAR_Index','RevPAR_Rank','RevPAR_per_chg_my_prop','RevPAR_per_chg_comp','RevPAR_per_chg_index','RevPAR_per_chg_rank','STARID']
-         star_df.drop_duplicates(subset=['Date','STARID'],inplace=True)
+                 star_df = star_df.append(star).drop_duplicates().sort_index(ascending=True)
+                 comp_set = comp_set.append(comps).drop_duplicates().sort_index(ascending=True)
+                 star_df = star_df.iloc[:,cols]
+                 # star_df['StarID'] = sub_prop
+                 # star_df.columns = ['RevPAR_my_prop','RevPAR_comp','ADR_my_prop','ADR_comp','OCC_my_prop','OCC_comp','StarID']
+                 star_df.iloc[:,4:6] = star_df.iloc[:,4:6]/100
+                 star_df.to_clipboard(header=False)
+                 star_df.columns = ['OCC_my_prop','OCC_comp','OCC_Index','OCC_Rank', 'OCC_per_chg_my_prop','OCC_per_chg_comp','OCC_per_chg_index','OCC_per_chg_rank','ADR_my_prop','ADR_comp','ADR_Index','ADR_Rank','ADR_per_chg_my_prop','ADR_per_chg_comp','ADR_per_chg_index','ADR_per_chg_rank','RevPAR_my_prop','RevPAR_comp','RevPAR_Index','RevPAR_Rank','RevPAR_per_chg_my_prop','RevPAR_per_chg_comp','RevPAR_per_chg_index','RevPAR_per_chg_rank','STARID']
+                 star_df.drop_duplicates(subset=['Date','STARID'],inplace=True)
     return star_df
 
 
