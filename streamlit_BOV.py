@@ -89,9 +89,8 @@ st.file_uploader(label='load STR data here',type=['.xls','.xlsx'])
 
 #st.write(file_data)
 
+
 @st.cache(allow_output_mutation=True)
-
-
 def get_static_store() -> Dict:
     """This dictionary is initialized once and can be used to store the files uploaded"""
     return {}
@@ -102,7 +101,7 @@ def main():
     static_store = get_static_store()
 
     st.info(__doc__)
-    result = st.file_uploader("Upload", type=([".xlsx",".xls"]))
+    result = st.file_uploader("Upload", type=['.xls','.xlsx'])
     if result:
         # Process you file here
         value = result.getvalue()
@@ -112,7 +111,7 @@ def main():
             static_store[result] = value
     else:
         static_store.clear()  # Hack to clear list if the user clears the cache and reloads the page
-        st.info("Upload one or more `.py` files.")
+        st.info("Upload one or more `STR` files.")
 
     if st.button("Clear file list"):
         static_store.clear()
@@ -121,5 +120,8 @@ def main():
     if st.checkbox("Show content of files?"):
         for value in static_store.values():
             st.code(value)
+
+
+main()
                   
 
