@@ -123,4 +123,4 @@ def main():
 main()
                   
 
-st.write(static_store)
+st.selectbox(static_store)
