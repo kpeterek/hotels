@@ -100,7 +100,7 @@ for file in multiple_files:
 
 submit2 = st.button('Run STR Compile')
 if submit2:
-    data2 = star_data_input(multiple_files)
+    data2 = star_data_input(file_container)
 
 st.write(data2)
                   
