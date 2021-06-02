@@ -85,7 +85,7 @@ st.markdown(href, unsafe_allow_html=True)
 
 #file_data = st.file_uploader("Upload a STR doc", type=([".xlsx",".xls"]))
 
-#st.write(file_data)
+st.write(static_store)
 
 
 @st.cache(allow_output_mutation=True)
