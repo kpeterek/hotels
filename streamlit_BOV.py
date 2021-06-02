@@ -88,37 +88,17 @@ st.markdown(href, unsafe_allow_html=True)
 #file_data = st.file_uploader("Upload a STR doc", type=([".xlsx",".xls"]))
 st.subheader('STR Compilation')
 
-@st.cache(allow_output_mutation=True)
-def get_static_store() -> Dict:
-    """This dictionary is initialized once and can be used to store the files uploaded"""
-    return {}
+multiple_files = st.file_uploader(
+    "Multiple File Uploader",
+    accept_multiple_files=True
+)
+for file in multiple_files:
+    file_container = st.beta_expander(
+        f"File name: {file.name} ({file.size}b)"
+    )
+    file_container.write(file.getvalue())
 
-
-def main():
-    """Run this function to run the app"""
-    static_store = get_static_store()
-
-    st.info(__doc__)
-    result = st.file_uploader("Upload", type=['.xls','.xlsx'])
-    if result:
-        # Process you file here
-        value = result.getvalue()
-
-        # And add it to the static_store if not already in
-        if not value in static_store.values():
-            static_store[result] = value
-    else:
-        static_store.clear()  # Hack to clear list if the user clears the cache and reloads the page
-        st.info("Upload one or more `STR` files.")
-
-    if st.button("Clear file list"):
-        static_store.clear()
-    if st.checkbox("Show file list?", True):
-        st.write(list(static_store.keys()))
-    if st.checkbox("Run Compile?"):
-        data2 = star_data_input(static_store[result])
-
-main()
+st.write("### Code")
                   
 def star_data_input(files:list):
     cols = [0,1,2,3,5,6,7,8,12,13,14,15,17,18,19,20,24,25,26,27,29,30,31,32,34]
