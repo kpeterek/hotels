@@ -4,7 +4,8 @@ def star_data_input(files:list,filename:str):
     plt.rcParams['lines.linestyle'] = '--'
     plt.style.context('dark_background')
     # path_list = PATH.split('\n')
-    dodge_census = pd.read_pickle(r"C:\Users\KyleP\Box\YB Hotels\CBRE Hotels Pipeline Data\Dodge Data\census.pkl")
+    dodge_pipeline = pd.read_csv('pipeline.csv')
+    dodge_census = pd.read_csv('census.csv')
     cols = [0,1,2,3,5,6,7,8,12,13,14,15,17,18,19,20,24,25,26,27,29,30,31,32,34]
     
     star_df = pd.DataFrame()
