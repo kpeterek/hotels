@@ -154,4 +154,4 @@ def star_data_input():
     star_df.drop_duplicates(subset=['Date','STARID'],inplace=True)
     return star_df , comp_set
          
-st.write(star_df.)
+st.write(star_df)
