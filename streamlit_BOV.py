@@ -116,7 +116,7 @@ def main():
     if st.checkbox("Show file list?", True):
         st.write(list(static_store.keys()))
     if st.checkbox("Run Compile?"):
-        data2 = star_data_input(result)
+        data2 = star_data_input(static_store[result])
 
 main()
                   
