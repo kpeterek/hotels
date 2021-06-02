@@ -167,11 +167,11 @@ def xldownload(df):
 
 # Main panel
 if st.sidebar.button('Submit'):
-    @st.cache
-    df = star_data_input(uploaded_file)
+    #@st.cache
+    str_data = star_data_input(uploaded_file)
     st.header('**Merged data**')
-    st.write(df)
-    st.markdown(filedownload(df), unsafe_allow_html=True)
-    st.markdown(xldownload(df), unsafe_allow_html=True)
+    st.write(str_data)
+    st.markdown(filedownload(str_data), unsafe_allow_html=True)
+    st.markdown(xldownload(str_data), unsafe_allow_html=True)
 else:
     st.info('Awaiting for ZIP file to be uploaded.')
