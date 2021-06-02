@@ -16,6 +16,8 @@ import time
 import DodgeData as dd
 from typing import Dict
 import base64
+from pandas.tseries.offsets import MonthEnd
+
 
 cols_needed = ['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude','distance','sort']
 cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','OpenDate','Latitude','Longitude','distance']
