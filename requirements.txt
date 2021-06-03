@@ -7,3 +7,4 @@ pydeck==0.6.1
 streamlit==0.82.0
 openpyxl
 xlrd
+matplotlib.pyplot
