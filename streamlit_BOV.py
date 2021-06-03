@@ -147,6 +147,9 @@ def star_data_input_zip(files):
 			plt.show()
 			pdf.savefig(fig)
 			plt.close()
+		    except Exception:
+			print(f'error found in {prop_name} with STR ID of {star}')
+			pass
 	print(star_df.info())
 	star_df = star_df.iloc[:,cols]
 	# star_df['StarID'] = sub_prop
