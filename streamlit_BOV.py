@@ -162,7 +162,7 @@ def star_data_input_zip(files):
 	star_df.columns = ['OCC_my_prop','OCC_comp','OCC_Index','OCC_Rank', 'OCC_per_chg_my_prop','OCC_per_chg_comp','OCC_per_chg_index','OCC_per_chg_rank','ADR_my_prop','ADR_comp','ADR_Index','ADR_Rank','ADR_per_chg_my_prop','ADR_per_chg_comp','ADR_per_chg_index','ADR_per_chg_rank','RevPAR_my_prop','RevPAR_comp','RevPAR_Index','RevPAR_Rank','RevPAR_per_chg_my_prop','RevPAR_per_chg_comp','RevPAR_per_chg_index','RevPAR_per_chg_rank','STARID']
 	# star_df.drop_duplicates(subset=['OCC_my_prop','ADR_my_prop','RevPAR_my_prop'],inplace=True)
 	print(comp_set)
-	return star_df
+	return star_df,comp_set
 
 
 def excel_file_merge(zip_file_name):
@@ -206,9 +206,9 @@ if st.sidebar.button('Submit'):
 	#@st.cache
 	str_data = star_data_input_zip(uploaded_file)
 	st.header('**STR Compiled Data**')
-	st.write(str_data)
+	st.write(comp_set)
 	st.markdown(filedownload(str_data), unsafe_allow_html=True)
 	st.markdown(xldownload(str_data), unsafe_allow_html=True)
-	st.line_chart(str_data[['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']])
+	st.line_chart(str_data[['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']],title=comp)
 else:
 	st.info('Awaiting for ZIP file to be uploaded.')
