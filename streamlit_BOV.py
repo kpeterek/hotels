@@ -171,11 +171,11 @@ def excel_file_merge(zip_file_name):
 		for file in f.namelist():
 			xlfile = archive.open(file)
 			if file.endswith('.xlsx'):
-			# Add a note indicating the file name that this dataframe originates from
-			df_xl = pd.read_excel(xlfile, engine='openpyxl')
-			df_xl['Note'] = file
-			# Appends content of each Excel file iteratively
-			df = df.append(df_xl, ignore_index=True)
+				# Add a note indicating the file name that this dataframe originates from
+				df_xl = pd.read_excel(xlfile, engine='openpyxl')
+				df_xl['Note'] = file
+				# Appends content of each Excel file iteratively
+				df = df.append(df_xl, ignore_index=True)
 	return df
 
 # Upload CSV data
