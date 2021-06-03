@@ -204,11 +204,11 @@ def xldownload(df):
 # Main panel
 if st.sidebar.button('Submit'):
 	#@st.cache
-	star_data,comp_set = star_data_input_zip(uploaded_file)
+	star_df,comp_set = star_data_input_zip(uploaded_file)
 	st.header('**STR Compiled Data**')
 	st.write(comp_set)
-	st.markdown(filedownload(str_data), unsafe_allow_html=True)
-	st.markdown(xldownload(str_data), unsafe_allow_html=True)
-	st.line_chart(str_data[['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']],title=comp)
+	st.markdown(filedownload(star_df), unsafe_allow_html=True)
+	st.markdown(xldownload(star_df), unsafe_allow_html=True)
+	st.line_chart(star_df[['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']],title=comp)
 else:
 	st.info('Awaiting for ZIP file to be uploaded.')
