@@ -120,6 +120,35 @@ def star_data_input_zip(files):
                         comp_set = comp_set.append(comps).drop_duplicates().sort_index(ascending=True)
                 except ValueError:
                     pass
+	for star in star_df.STARID.unique():
+            prop_name = comp_set[comp_set.Subj_prop == int(star)].iloc[0,1]
+            try:    
+                # plt.rcParams(10,10)
+                fig,(ax1,ax2,ax3) = plt.subplots(nrows=3,ncols=1,sharex=True)
+                # plt.title()
+                # fig.raise_window()
+                # fig.titlesize('small')
+                # prop_name= comp_set[comp_set.Subj_prop == int(star)].iloc[0,1]['Name'].item()
+                # star_df[star_df.STARID == star].iloc[:,[0,1,8,9,16,17]].plot(title = dodge_census.Property[dodge_census.StarID ==  star].item() +' RevPAR, ADR, Occupancy', subplots=True)
+                ax1.plot(star_df[star_df.STARID == star].iloc[:,[0]],color = '#006A4D', label='My Property')
+                ax1.plot(star_df[star_df.STARID == star].iloc[:,[1]],color = '#EC008C', label = 'Comp Set')
+                ax1.legend()
+                ax1.set_title('Occupancy')
+                ax2.plot(star_df[star_df.STARID == star].iloc[:,[8]],color = '#006A4D', label='My Property')
+                ax2.plot(star_df[star_df.STARID == star].iloc[:,[9]],color = '#EC008C',label = 'Comp Set')
+                ax2.legend()
+                ax2.set_title('ADR')
+                ax3.plot(star_df[star_df.STARID == star].iloc[:,[16]],color = '#006A4D', label='My Property')
+                ax3.plot(star_df[star_df.STARID == star].iloc[:,[17]],color = '#EC008C',label = 'Comp Set')
+                ax3.legend()
+                ax3.set_title('RevPAR')
+                # plt.plot(star_df[star_df.STARID == star].iloc[:,[0,1]],label='Occupancy',color)
+                plt.tight_layout()
+                plt.suptitle(prop_name, fontsize=14)
+                fig.subplots_adjust(top=0.85)   
+                plt.show()
+                pdf.savefig(fig)
+                plt.close()
     print(star_df.info())
     star_df = star_df.iloc[:,cols]
     # star_df['StarID'] = sub_prop
