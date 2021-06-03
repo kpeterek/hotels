@@ -209,6 +209,6 @@ if st.sidebar.button('Submit'):
 	st.write(comp_set)
 	st.markdown(filedownload(star_df), unsafe_allow_html=True)
 	st.markdown(xldownload(star_df), unsafe_allow_html=True)
-	st.line_chart(star_df[['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']],title=comp)
+	st.line_chart(star_df[['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']],title=comp_set.iloc[0,0])
 else:
 	st.info('Awaiting for ZIP file to be uploaded.')
