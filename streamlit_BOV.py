@@ -117,7 +117,7 @@ def star_data_input_zip(files):
 						comps['Subj_prop'] = sub_prop
 						comp_set = comp_set.append(comps).drop_duplicates().sort_index(ascending=True)
 				except ValueError:
-				pass
+					pass
 	for star in star_df.STARID.unique():
 	prop_name = comp_set[comp_set.Subj_prop == int(star)].iloc[0,1]
 		try:    
