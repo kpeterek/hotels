@@ -120,7 +120,7 @@ def star_data_input_zip(files):
 					pass
 	for star in star_df.STARID.unique():
 		prop_name = comp_set[comp_set.Subj_prop == int(star)].iloc[0,1]
-			try:    
+		try:    
 			# plt.rcParams(10,10)
 			fig,(ax1,ax2,ax3) = plt.subplots(nrows=3,ncols=1,sharex=True)
 			# plt.title()
