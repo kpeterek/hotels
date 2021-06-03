@@ -107,15 +107,15 @@ def star_data_input_zip(files):
 				print(file)
 				try:
 					if 'Monthly STAR Report' in pd.read_excel(xlfile,sheet_name='Table of Contents',skiprows=2,usecols='B',header=0,nrows=0).columns[0]:
-					date = pd.to_datetime(pd.read_excel(xlfile,sheet_name='Glance',skiprows=4).iloc[0,1],infer_datetime_format=True)+MonthEnd(1)
-					comps = pd.read_excel(xlfile,sheet_name='Response',skiprows=21,usecols='C:L',header=0).dropna(axis=0,how = 'all').dropna(axis=1,how='all').dropna(subset=['Name'])
-					star = pd.read_excel(xlfile,sheet_name='Comp',skiprows=18,usecols='B:T',nrows=34,header=1,index_col=0,parse_dates=True).T
-					star.index = pd.date_range(end=date,periods = 18,freq='M')
-					sub_prop = comps.iloc[0,0]
-					star['STARID'] = sub_prop
-					star_df = star_df.append(star).drop_duplicates().sort_index(ascending=True)
-					comps['Subj_prop'] = sub_prop
-					comp_set = comp_set.append(comps).drop_duplicates().sort_index(ascending=True)
+						date = pd.to_datetime(pd.read_excel(xlfile,sheet_name='Glance',skiprows=4).iloc[0,1],infer_datetime_format=True)+MonthEnd(1)
+						comps = pd.read_excel(xlfile,sheet_name='Response',skiprows=21,usecols='C:L',header=0).dropna(axis=0,how = 'all').dropna(axis=1,how='all').dropna(subset=['Name'])
+						star = pd.read_excel(xlfile,sheet_name='Comp',skiprows=18,usecols='B:T',nrows=34,header=1,index_col=0,parse_dates=True).T
+						star.index = pd.date_range(end=date,periods = 18,freq='M')
+						sub_prop = comps.iloc[0,0]
+						star['STARID'] = sub_prop
+						star_df = star_df.append(star).drop_duplicates().sort_index(ascending=True)
+						comps['Subj_prop'] = sub_prop
+						comp_set = comp_set.append(comps).drop_duplicates().sort_index(ascending=True)
 				except ValueError:
 				pass
 	for star in star_df.STARID.unique():
@@ -162,7 +162,7 @@ def star_data_input_zip(files):
 
 
 def excel_file_merge(zip_file_name):
-    df = pd.DataFrame()
+	df = pd.DataFrame()
     archive = zipfile.ZipFile(zip_file_name, 'r')
     with zipfile.ZipFile(zip_file_name, "r") as f:
         for file in f.namelist():
