@@ -101,7 +101,7 @@ def star_data_input_zip(files):
     comp_set = pd.DataFrame()
     archive = zipfile.ZipFile(files, 'r')
     with zipfile.ZipFile(files, "r") as f:
-        for file in f.namelist():
+	for file in f.namelist():
             xlfile = archive.open(file)
             if file.endswith('.xlsx'):
                 print(file)
