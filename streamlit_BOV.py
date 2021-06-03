@@ -172,7 +172,7 @@ def xldownload(df):
 # Main panel
 if st.sidebar.button('Submit'):
     #@st.cache
-    str_data = star_data_input(uploaded_file)
+    str_data = star_data_input_zip(uploaded_file)
     st.header('**Merged data**')
     st.write(str_data)
     st.markdown(filedownload(str_data), unsafe_allow_html=True)
