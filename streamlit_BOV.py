@@ -26,6 +26,7 @@ import base64
 from pandas.tseries.offsets import MonthEnd
 import zipfile
 import xlrd
+import matplotlib.pyplot as plt
 
 
 cols_needed = ['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude','distance','sort']
