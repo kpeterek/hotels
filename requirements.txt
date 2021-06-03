@@ -5,3 +5,5 @@ matplotlib==3.3.4
 geopandas==0.8.1
 pydeck==0.6.1
 streamlit==0.79.0
+openpyxl
+xlrd
