@@ -191,8 +191,12 @@ cols_needed = ['Title','Address','City','State','PostalCode','Units','Target Ope
 cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','OpenDate','Latitude','Longitude','distance']
 dodge_pipeline = pd.read_csv('pipeline.csv')
 dodge_census = pd.read_csv('census.csv')
-kalibi_zip = pd.read_pickle('Kalibri_zip_code_markets')
-
+kalibri_zip = pd.read_pickle('Kalibri_zip_code_markets')
+with open('Closings_pickle.pkl', 'rb') as f: 
+	closings = pickle.load(f)
+with open('Kalibri_zip_code_markets.pkl', 'rb') as f: 
+	kalibri_zip = pickle.load(f)
+	
 st.title('Explore Your Hotels!!!')
 
 
@@ -293,8 +297,6 @@ csv = data.to_csv(index=False)
 b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
 href = f'<a href="data:file/csv;base64,{b64}">Download CSV File</a> (right-click and save as &lt;some_name&gt;.csv)'
 st.markdown(href, unsafe_allow_html=True)
-with open('Closings_pickle.pkl', 'rb') as f: 
-	closings = pickle.load(f)
 
 #broker = closings.groupby('Agent')
 #sorted_region_unique = sorted(closings['Region name'].astype(str).unique())
