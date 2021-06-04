@@ -47,7 +47,7 @@ remote_css('https://fonts.googleapis.com/icon?family=Tangerine')
 
 def search(regex: str, df, case=False):
     """Search all the text columns of `df`, return rows with any matches."""
-    textlikes = df.select_dtypes(include=[object, "string","int"])
+    textlikes = df.select_dtypes(include=[object, "string","int64"])
     return df[
         textlikes.apply(
             lambda column: column.str.contains(regex, regex=True, case=case, na=False)
