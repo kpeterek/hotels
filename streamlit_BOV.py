@@ -179,11 +179,11 @@ def excel_file_merge(zip_file_name):
 	return df
 
 # Upload CSV data
-with st.sidebar.header('1. Upload your ZIP file'):
-    uploaded_file = st.sidebar.file_uploader("Excel-containing ZIP file", type=["zip"])
-    st.sidebar.markdown("""
-[Example ZIP input file](https://github.com/dataprofessor/excel-file-merge-app/raw/main/nba_data.zip)
-""")
+#with st.sidebar.header('1. Upload your ZIP file'):
+ #   uploaded_file = st.sidebar.file_uploader("Excel-containing ZIP file", type=["zip"])
+  #  st.sidebar.markdown("""
+#[Example ZIP input file](https://github.com/dataprofessor/excel-file-merge-app/raw/main/nba_data.zip)
+#""")
 
 # File download
 def filedownload(df):
