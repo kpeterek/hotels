@@ -147,7 +147,7 @@ st.write('''
          All the hotel data you can handle bro!''')
 
 multiple_files = st.file_uploader(
-    "Multiple File Uploader",
+    "STR Report File Dump - drop all the STR reports for your property here",
     accept_multiple_files=True
 )
 
@@ -158,8 +158,11 @@ if st.button('Run STR Data from Multi-File Tool'):
 	data  = dd.newsupply(float(comp_set.iloc[0,0]),7.0,'radius')
 	st.header('**STR Compiled Data**')
 	st.line_chart(star_df[['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']])
+	st.header('**STR Competitive Set**')
 	st.write(comp_set)
+	st.header('**STR Statistics**')
 	st.write(star_df)
+	st.header('**Incoming Supply**')
 	st.write(data.dropna())
 	data.rename(columns = {'Latitude':'lat','Longitude':'lon'},inplace=True)
 	data.dropna(inplace=True)
