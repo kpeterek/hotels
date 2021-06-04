@@ -45,9 +45,14 @@ def icon(icon_name):
 local_css("style.css")
 remote_css('https://fonts.googleapis.com/icon?family=Tangerine')
 
-icon("search")
-selected = st.text_input("", "Search...")
-button_clicked = st.button("OK")
+def search(regex: str, df, case=False):
+    """Search all the text columns of `df`, return rows with any matches."""
+    textlikes = df.select_dtypes(include=[object, "string"])
+    return df[
+        textlikes.apply(
+            lambda column: column.str.contains(regex, regex=True, case=case, na=False)
+        ).any(axis=1)
+    ]
 
 def tsa_info(moving_avg = 7):
     url = 'https://www.tsa.gov/coronavirus/passenger-throughput'
@@ -186,14 +191,23 @@ cols_needed = ['Title','Address','City','State','PostalCode','Units','Target Ope
 cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','OpenDate','Latitude','Longitude','distance']
 dodge_pipeline = pd.read_csv('pipeline.csv')
 dodge_census = pd.read_csv('census.csv')
+kalibi_zip = pd.read_pickle('Kalibri_zip_code_markets')
 
 st.title('Explore Your Hotels!!!')
+
 
 
 
 st.write('''
          
          All the hotel data you can handle bro!''')
+
+icon("search")
+selected = st.text_input("", "Search...")
+if st.button("OK"):
+	filtered_zip = search(selected,kalibri_zip)
+	st.write(filtered_zip)
+
 
 multiple_files = st.file_uploader(
     "STR Report File Dump - drop all the STR reports for your property here",
