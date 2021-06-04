@@ -241,6 +241,7 @@ st.write(date)
 #sorted_city_unique = sorted(closings['City, ST'].astype(str).unique())
 #selected_city = st.sidebar.multiselect('City, ST',sorted_city_unique, sorted_city_unique)
 st.write(closings[(closings['Sale Date'].dt.date >= date)&(closings['Region name'].isin(selected_region))])
+st.write(closings[(closings['Sale Date'].dt.date >= date)&(closings['Region name'].isin(selected_region))].describe())
 #(closings['City, ST'].isin('selected_city'))&
 
 # Main panel
