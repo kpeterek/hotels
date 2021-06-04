@@ -204,7 +204,7 @@ def xldownload(df):
 # Main panel
 if st.sidebar.button('Submit'):
 	#@st.cache
-	star_df,comp_set = star_data_input_zip(uploaded_file)
+	star_df,comp_set = star_data_input_zip(multiple_files)
 	st.header('**STR Compiled Data**')
 	st.write(comp_set)
 	st.markdown(filedownload(star_df), unsafe_allow_html=True)
