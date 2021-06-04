@@ -232,10 +232,15 @@ with open('Closings_pickle.pkl', 'rb') as f:
 broker = closings.groupby('Agent')
 sorted_region_unique = sorted(closings['Region name'].astype(str).unique())
 selected_region = st.sidebar.multiselect('Region name',sorted_region_unique, sorted_region_unique)
-sorted_city_unique = sorted(closings['City, ST'].astype(str).unique())
-selected_city = st.sidebar.multiselect('City, ST',sorted_city_unique, sorted_city_unique)
-st.write(closings[(closings['City, ST'].isin('selected_city'))&(closings['Region name'].isin(selected_region))])
+#sorted_city_unique = sorted(closings['City, ST'].astype(str).unique())
+#selected_city = st.sidebar.multiselect('City, ST',sorted_city_unique, sorted_city_unique)
+date = st.sidebar.date_input('start date', datetime.date(2000,1,1))
+st.write(date)
 
+#sorted_city_unique = sorted(closings['City, ST'].astype(str).unique())
+#selected_city = st.sidebar.multiselect('City, ST',sorted_city_unique, sorted_city_unique)
+st.write(closings[(closings['Region name'].isin(selected_region))])
+#(closings['City, ST'].isin('selected_city'))&
 
 # Main panel
 #if st.sidebar.button('Submit'):
