@@ -222,10 +222,10 @@ if st.button('Run STR Data from Multi-File Tool'):
 	#@st.cache
 	star_df,comp_set = star_data_input(multiple_files)
 	st.header('**STR Compiled Data**')
+	st.line_chart(star_df[['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']])
 	st.write(comp_set)
 	st.write(star_df)
 	st.markdown(filedownload(star_df), unsafe_allow_html=True)
 	st.markdown(xldownload(star_df), unsafe_allow_html=True)
-	st.line_chart(star_df[['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']])
 else:
 	st.info('Awaiting for STR Reports to be uploaded.')
