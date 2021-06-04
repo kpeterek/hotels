@@ -9,4 +9,4 @@ openpyxl
 xlrd
 seaborn
 pickle5 
-BeautifulSoup
+BeautifulSoup == 4.9.0
