@@ -211,7 +211,7 @@ mkts =  kalibri_data['Market'].unique()
 mkt_choice = st.sidebar.selectbox('Select your Submarket:', mkts)
 sub_mkts = kalibri_data['Submarket'].unique()
 submkt_choice = st.sidebar.selectbox('Select your Submarket:', sub_mkts)
-st.write(kalibri_data[(kalibri_data.Market.isin([mkt_choice]))&(kalibri_data.Submarket.isin([submkt_choice])])
+st.write(kalibri_data[(kalibri_data.Market.isin([mkt_choice]))&(kalibri_data.Submarket.isin([submkt_choice]))])
 #years = df["year"].loc[df["make"] = make_choice]
 #year_choice = st.sidebar.selectbox('', years) 
 
