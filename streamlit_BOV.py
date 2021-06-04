@@ -35,7 +35,7 @@ import requests
 def tsa_info(moving_avg = 7):
     url = 'https://www.tsa.gov/coronavirus/passenger-throughput'
     response = requests.get(url)
-    soup = BeautifulSoup(response.text,'lxml')
+    soup = BeautifulSoup(response.text,'html')
     table = soup.find('table')
     table_body = table.find('tbody')
     rows = table_body.findAll('tr')
