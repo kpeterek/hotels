@@ -230,7 +230,7 @@ with open('Closings_pickle.pkl', 'rb') as f:
 	closings = pickle.load(f)
 st.write(closings)
 hist_values = np.histogram(
-    closings['Price/Room'].dropna())
+    closings['Sale Price'].dropna())
 st.bar_chart(hist_values)
 
 # Main panel
