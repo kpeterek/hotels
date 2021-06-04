@@ -218,7 +218,7 @@ multiple_files = st.file_uploader(
     accept_multiple_files=True
 )
 
-if st.button('Submit'):
+if st.button('Run STR Data from Multi-File Tool'):
 	#@st.cache
 	star_df,comp_set = star_data_input(multiple_files)
 	st.header('**STR Compiled Data**')
