@@ -27,6 +27,7 @@ from pandas.tseries.offsets import MonthEnd
 import zipfile
 import xlrd
 import matplotlib.pyplot as plt
+import pickle
 
 def star_data_input(files):
 	cols = [0,1,2,3,5,6,7,8,12,13,14,15,17,18,19,20,24,25,26,27,29,30,31,32,34]
