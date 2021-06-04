@@ -42,6 +42,25 @@ st.write('''
          
          All the hotel data you can handle bro!''')
 
+multiple_files = st.file_uploader(
+    "Multiple File Uploader",
+    accept_multiple_files=True
+)
+
+if st.button('Run STR Data from Multi-File Tool'):
+	#@st.cache
+	star_df,comp_set = star_data_input(multiple_files)
+	new_supply = dd.newsupply(float(comp_set.iloc[0,0]),float(radius),st_filter)
+	st.header('**STR Compiled Data**')
+	st.line_chart(star_df[['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']])
+	st.write(comp_set)
+	st.write(star_df)
+	st.markdown(filedownload(star_df), unsafe_allow_html=True)
+	st.markdown(xldownload(star_df), unsafe_allow_html=True)
+else:
+	st.info('Awaiting for STR Reports to be uploaded.')
+
+
 name_str = pd.DataFrame(dodge_census[['Property','StarID']])
 
                 
@@ -213,19 +232,4 @@ def xldownload(df):
 #else:
 #	st.info('Awaiting for ZIP file to be uploaded.')
 	
-multiple_files = st.file_uploader(
-    "Multiple File Uploader",
-    accept_multiple_files=True
-)
 
-if st.button('Run STR Data from Multi-File Tool'):
-	#@st.cache
-	star_df,comp_set = star_data_input(multiple_files)
-	st.header('**STR Compiled Data**')
-	st.line_chart(star_df[['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']])
-	st.write(comp_set)
-	st.write(star_df)
-	st.markdown(filedownload(star_df), unsafe_allow_html=True)
-	st.markdown(xldownload(star_df), unsafe_allow_html=True)
-else:
-	st.info('Awaiting for STR Reports to be uploaded.')
