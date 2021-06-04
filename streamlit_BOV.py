@@ -210,7 +210,7 @@ name_str = pd.DataFrame(dodge_census[['Property','StarID']])
  
 if st.button('Run TSA Latest Data'):
 	#@st.cache
-	tsa_data = tsa_info()
+	tsa_sma, tsa_data = tsa_info()
 	st.line_chart(tsa_sma.iloc[:,-3:].loc['2021'])
 	
 # markets = 1
