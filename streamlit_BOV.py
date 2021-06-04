@@ -207,6 +207,7 @@ st.title('Explore Your Hotels!!!')
 st.write('''
          
          All the hotel data you can handle bro!''')
+@st.cache()
 mkts =  kalibri_data['Market'].unique()
 mkt_choice = st.sidebar.selectbox('Select your Submarket:', mkts)
 sub_mkts = kalibri_data['Submarket'].unique()
