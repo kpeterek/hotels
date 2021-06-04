@@ -122,13 +122,13 @@ def excel_file_merge(zip_file_name):
 
 # File download
 def filedownload(df):
-    csv = df.to_csv(index=False)
+    csv = df.to_csv()
     b64 = base64.b64encode(csv.encode()).decode()  # strings <-> bytes conversions
     href = f'<a href="data:file/csv;base64,{b64}" download="merged_file.csv">Download Merged File as CSV</a>'
     return href
 
 def xldownload(df):
-    df.to_excel('data.xlsx', index=False)
+    df.to_excel('data.xlsx')
     data = open('data.xlsx', 'rb').read()
     b64 = base64.b64encode(data).decode('UTF-8')
     #b64 = base64.b64encode(xl.encode()).decode()  # strings <-> bytes conversions
@@ -159,18 +159,18 @@ if st.button('Run STR Data from Multi-File Tool'):
 	st.write(comp_set.iloc[0,0],comp_set.iloc[0,1])
 	data  = dd.newsupply(float(comp_set.iloc[0,0]),7.0,'radius')
 	st.header('**STR Compiled Data**')
-	st.line_chart(star_df.reset_index()[['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']])
+	st.line_chart(star_df[['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']])
 	st.header('**STR Competitive Set**')
 	st.write(comp_set)
 	st.header('**STR Statistics**')
-	st.write(star_df)
+	st.write(star_df.reset_index())
 	st.header('**Incoming Supply**')
 	st.write(data.dropna())
 	data.rename(columns = {'Latitude':'lat','Longitude':'lon'},inplace=True)
 	data.dropna(inplace=True)
 	st.map(data)
-	st.markdown(filedownload(star_df), unsafe_allow_html=True)
-	st.markdown(xldownload(star_df), unsafe_allow_html=True)
+	st.markdown(filedownload(star_df.reset_index()), unsafe_allow_html=True)
+	st.markdown(xldownload(star_df.reset_index()), unsafe_allow_html=True)
 else:
 	st.info('Awaiting for STR Reports to be uploaded.')
 
