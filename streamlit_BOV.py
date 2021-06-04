@@ -156,7 +156,7 @@ multiple_files = st.file_uploader(
 if st.button('Run STR Data from Multi-File Tool'):
 	#@st.cache
 	star_df,comp_set = star_data_input(multiple_files)
-	st.write(comp_set.iloc[0,0])
+	st.write(comp_set.iloc[0,0],comp_set.iloc[0,1])
 	data  = dd.newsupply(float(comp_set.iloc[0,0]),7.0,'radius')
 	st.header('**STR Compiled Data**')
 	st.line_chart(star_df[['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']])
