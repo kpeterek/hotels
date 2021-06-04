@@ -201,17 +201,17 @@ def xldownload(df):
     return href
 
 # Main panel
-if st.sidebar.button('Submit'):
-	#@st.cache
-	star_df,comp_set = star_data_input_zip(uploaded_file)
-	st.header('**STR Compiled Data**')
-	st.write(comp_set)
-	st.write(star_df)
-	st.markdown(filedownload(star_df), unsafe_allow_html=True)
-	st.markdown(xldownload(star_df), unsafe_allow_html=True)
-	st.line_chart(star_df[['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']])
-else:
-	st.info('Awaiting for ZIP file to be uploaded.')
+#if st.sidebar.button('Submit'):
+#	#@st.cache
+#	star_df,comp_set = star_data_input_zip(uploaded_file)
+#	st.header('**STR Compiled Data**')
+#	st.write(comp_set)
+#	st.write(star_df)
+#	st.markdown(filedownload(star_df), unsafe_allow_html=True)
+#	st.markdown(xldownload(star_df), unsafe_allow_html=True)
+#	st.line_chart(star_df[['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']])
+#else:
+#	st.info('Awaiting for ZIP file to be uploaded.')
 	
 multiple_files = st.file_uploader(
     "Multiple File Uploader",
