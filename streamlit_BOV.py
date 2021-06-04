@@ -265,18 +265,18 @@ st.markdown(href, unsafe_allow_html=True)
 with open('Closings_pickle.pkl', 'rb') as f: 
 	closings = pickle.load(f)
 
-broker = closings.groupby('Agent')
-sorted_region_unique = sorted(closings['Region name'].astype(str).unique())
-selected_region = st.sidebar.multiselect('Region name',sorted_region_unique, sorted_region_unique)
+#broker = closings.groupby('Agent')
+#sorted_region_unique = sorted(closings['Region name'].astype(str).unique())
+#selected_region = st.sidebar.multiselect('Region name',sorted_region_unique, sorted_region_unique)
 #sorted_city_unique = sorted(closings['City, ST'].astype(str).unique())
 #selected_city = st.sidebar.multiselect('City, ST',sorted_city_unique, sorted_city_unique)
-date = st.sidebar.date_input('start date', dt.date(2000,1,1))
-st.write(date)
+#date = st.sidebar.date_input('start date', dt.date(2000,1,1))
+#st.write(date)
 
 #sorted_city_unique = sorted(closings['City, ST'].astype(str).unique())
 #selected_city = st.sidebar.multiselect('City, ST',sorted_city_unique, sorted_city_unique)
-st.write(closings[(closings['Sale Date'].dt.date >= date)&(closings['Region name'].isin(selected_region))])
-st.write(closings[(closings['Sale Date'].dt.date >= date)&(closings['Region name'].isin(selected_region))].describe())
+#st.write(closings[(closings['Sale Date'].dt.date >= date)&(closings['Region name'].isin(selected_region))])
+#st.write(closings[(closings['Sale Date'].dt.date >= date)&(closings['Region name'].isin(selected_region))].describe())
 #(closings['City, ST'].isin('selected_city'))&
 
 # Main panel
