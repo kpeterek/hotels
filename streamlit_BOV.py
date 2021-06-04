@@ -195,6 +195,8 @@ with open('Closings_pickle.pkl', 'rb') as f:
 	closings = pickle.load(f)
 with open('Kalibri_zip_code_markets.pkl', 'rb') as f: 
 	kalibri_zip = pickle.load(f)
+with open('AllSubmarketData.pkl', 'rb') as f: 
+	kalibri_data = pickle.load(f)
 	
 st.title('Explore Your Hotels!!!')
 
@@ -209,7 +211,10 @@ icon("search")
 selected = st.text_input("", "Search...")
 if st.button("OK"):
 	filtered_zip = search(selected,kalibri_zip)
+	submktname = filtered_zip.submktname.item()
 	st.write(filtered_zip)
+	st.write(kalibri_data[kalibri_data.Submarket.isin(submktname)])
+
 
 
 multiple_files = st.file_uploader(
