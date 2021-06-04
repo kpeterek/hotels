@@ -28,6 +28,7 @@ import zipfile
 import xlrd
 import matplotlib.pyplot as plt
 import pickle5 as pickle
+import datetime as dt
 
 def star_data_input(files):
 	cols = [0,1,2,3,5,6,7,8,12,13,14,15,17,18,19,20,24,25,26,27,29,30,31,32,34]
@@ -234,7 +235,7 @@ sorted_region_unique = sorted(closings['Region name'].astype(str).unique())
 selected_region = st.sidebar.multiselect('Region name',sorted_region_unique, sorted_region_unique)
 #sorted_city_unique = sorted(closings['City, ST'].astype(str).unique())
 #selected_city = st.sidebar.multiselect('City, ST',sorted_city_unique, sorted_city_unique)
-date = st.sidebar.date_input('start date', datetime.date(2000,1,1))
+date = st.sidebar.date_input('start date', dt.date(2000,1,1))
 st.write(date)
 
 #sorted_city_unique = sorted(closings['City, ST'].astype(str).unique())
