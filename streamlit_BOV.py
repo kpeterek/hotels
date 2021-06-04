@@ -212,3 +212,13 @@ if st.sidebar.button('Submit'):
 	st.line_chart(star_df[['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']])
 else:
 	st.info('Awaiting for ZIP file to be uploaded.')
+	
+multiple_files = st.file_uploader(
+    "Multiple File Uploader",
+    accept_multiple_files=True
+)
+multiple_files = st.file_uploader('CSV',type="csv", accept_multiple_files=True)
+
+
+
+st.write("### Code")
