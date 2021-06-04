@@ -228,10 +228,11 @@ href = f'<a href="data:file/csv;base64,{b64}">Download CSV File</a> (right-click
 st.markdown(href, unsafe_allow_html=True)
 with open('Closings_pickle.pkl', 'rb') as f: 
 	closings = pickle.load(f)
+
+broker = closings.groupby('Agent')
+selected_sector = st.sidebar.multiselect('Region name')
 st.write(closings)
-hist_values = np.histogram(
-    closings['Sale Price'].dropna(),bins=10)
-st.bar_chart(hist_values)
+
 
 # Main panel
 #if st.sidebar.button('Submit'):
