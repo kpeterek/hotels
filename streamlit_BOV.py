@@ -211,9 +211,9 @@ icon("search")
 selected = st.text_input("", "Search...")
 if st.button("OK"):
 	filtered_zip = search(selected,kalibri_zip)
-	submktname = filtered_zip.submktname.item()
+	mktname = filtered_zip.mktname.item()
 	st.write(filtered_zip)
-	st.write(kalibri_data[kalibri_data.Submarket.isin([submktname])])
+	st.write(kalibri_data[kalibri_data.Market.isin([mktname])])
 
 
 
