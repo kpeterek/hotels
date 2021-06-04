@@ -54,6 +54,11 @@ def search(regex: str, df, case=False):
         ).any(axis=1)
     ]
 
+mkts = kalibri_data['Submarket'].drop_duplicates()
+make_choice = st.sidebar.selectbox('Select your Submarket:', mkts)
+#years = df["year"].loc[df["make"] = make_choice]
+#year_choice = st.sidebar.selectbox('', years) 
+
 def tsa_info(moving_avg = 7):
     url = 'https://www.tsa.gov/coronavirus/passenger-throughput'
     response = requests.get(url)
