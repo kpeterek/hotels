@@ -217,7 +217,7 @@ multiple_files = st.file_uploader(
     "Multiple File Uploader",
     accept_multiple_files=True
 )
-multiple_files = st.file_uploader('CSV',type="csv", accept_multiple_files=True)
+
 
 
 
