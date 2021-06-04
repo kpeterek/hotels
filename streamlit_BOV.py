@@ -213,7 +213,7 @@ if st.button("OK"):
 	filtered_zip = search(selected,kalibri_zip)
 	mktname = filtered_zip.mktname.item()
 	st.write(filtered_zip)
-	st.write(kalibri_data[kalibri_data.Market.isin([mktname])])
+	st.write(kalibri_data[(kalibri_data.Period == 'Quarterly')&(kalibri_data.Market.isin([mktname]))])
 
 
 
