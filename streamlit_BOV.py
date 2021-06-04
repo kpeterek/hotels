@@ -207,7 +207,7 @@ st.title('Explore Your Hotels!!!')
 st.write('''
          
          All the hotel data you can handle bro!''')
-mkts = kalibri_data['Submarket'].drop_duplicates()
+mkts = kalibri_data['Submarket'].unique()
 make_choice = st.sidebar.selectbox('Select your Submarket:', mkts)
 st.write(kalibri_data[kalibri_data.Submarket.isin([make_choice])])
 #years = df["year"].loc[df["make"] = make_choice]
