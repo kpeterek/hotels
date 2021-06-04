@@ -191,7 +191,6 @@ cols_needed = ['Title','Address','City','State','PostalCode','Units','Target Ope
 cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','OpenDate','Latitude','Longitude','distance']
 dodge_pipeline = pd.read_csv('pipeline.csv')
 dodge_census = pd.read_csv('census.csv')
-kalibri_zip = pd.read_pickle('Kalibri_zip_code_markets')
 with open('Closings_pickle.pkl', 'rb') as f: 
 	closings = pickle.load(f)
 with open('Kalibri_zip_code_markets.pkl', 'rb') as f: 
