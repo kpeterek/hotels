@@ -231,9 +231,9 @@ with open('Closings_pickle.pkl', 'rb') as f:
 
 broker = closings.groupby('Agent')
 sorted_region_unique = sorted(closings['Region name'].astype(str).unique())
-selected_region = st.sidebar.multiselect('Region name',sorted_sector_unique, sorted_sector_unique)
+selected_region = st.sidebar.multiselect('Region name',sorted_region_unique, sorted_region_unique)
 sorted_city_unique = sorted(closings['City'].astype(str).unique())
-selected_city = st.sidebar.multiselect('City',sorted_sector_unique, sorted_sector_unique)
+selected_city = st.sidebar.multiselect('City',sorted_city_unique, sorted_city_unique)
 st.write(closings[(closings['City'].isin('selected_city'))&(closings['Region name'].isin(selected_sector))])
 
 
