@@ -10,3 +10,4 @@ xlrd
 seaborn
 pickle5 
 beautifulsoup4==4.9.0
+requests
