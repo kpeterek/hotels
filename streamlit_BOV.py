@@ -229,6 +229,10 @@ st.markdown(href, unsafe_allow_html=True)
 with open('Closings_pickle.pkl', 'rb') as f: 
 	closings = pickle.load(f)
 st.write(closings)
+hist_values = np.histogram(
+    closings['Price/Room'], bins=20)[0]
+st.bar_chart(hist_values)
+
 # Main panel
 #if st.sidebar.button('Submit'):
 #	#@st.cache
