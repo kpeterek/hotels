@@ -208,7 +208,7 @@ else:
 name_str = pd.DataFrame(dodge_census[['Property','StarID']])
 
  
-if st.button('Run STR Data from Multi-File Tool'):
+if st.button('Run TSA Latest Data'):
 	#@st.cache
 	tsa_data = tsa_info()
 	st.line_chart(tsa_data)
