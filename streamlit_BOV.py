@@ -28,92 +28,6 @@ import zipfile
 import xlrd
 import matplotlib.pyplot as plt
 
-
-cols_needed = ['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude','distance','sort']
-cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','OpenDate','Latitude','Longitude','distance']
-dodge_pipeline = pd.read_csv('pipeline.csv')
-dodge_census = pd.read_csv('census.csv')
-
-st.title('Explore Your Hotels!!!')
-
-
-
-st.write('''
-         
-         All the hotel data you can handle bro!''')
-
-multiple_files = st.file_uploader(
-    "Multiple File Uploader",
-    accept_multiple_files=True
-)
-
-if st.button('Run STR Data from Multi-File Tool'):
-	#@st.cache
-	star_df,comp_set = star_data_input(multiple_files)
-	new_supply = dd.newsupply(float(comp_set.iloc[0,0]),float(radius),st_filter)
-	st.header('**STR Compiled Data**')
-	st.line_chart(star_df[['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']])
-	st.write(comp_set)
-	st.write(star_df)
-	st.markdown(filedownload(star_df), unsafe_allow_html=True)
-	st.markdown(xldownload(star_df), unsafe_allow_html=True)
-else:
-	st.info('Awaiting for STR Reports to be uploaded.')
-
-
-name_str = pd.DataFrame(dodge_census[['Property','StarID']])
-
-                
-# markets = 1
-# brands= dodge_pipeline.Chain.dropna().unique()
-
-# stars = dodge_census.StarID.dropna().unique()
-
-hotel = st.sidebar.selectbox('Select Hotel',name_str['Property'])
-st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str.Property == hotel]['StarID'].item())
-# market = st.sidebar.selectbox('Select Market',dodge_pipeline[dodge_pipeline.State == state]['Submarket'].dropna().unique())
-
-# brand = st.sidebar.selectbox('Select brand',brands)
-
-
-# st.write(state)
-# st.write(brand)
-
-data = dodge_pipeline[['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude']]
-
-star = st.sidebar.text_input('Enter Star ID')
-st_filter = st.sidebar.selectbox('Filter by?', ['radius','tract','city'])
-radius = st.sidebar.text_input('Radius?')
-if radius.isnumeric():
-    pass
-else:
-    radius = 0.0
-
-submit = st.sidebar.button('run new supply')
-if submit:
-    data = dd.newsupply(float(star),float(radius),st_filter)
-    
-
-# st.write('run a radius sample',dd.newsupply(star))
-
-
-st.write(data.dropna())
-
-# button_clicked = st.sidebar.button("OK")
-
-
-data.rename(columns = {'Latitude':'lat','Longitude':'lon'},inplace=True)
-data.dropna(inplace=True)
-
-st.map(data)
-
-st.header("File Download")
-
-csv = data.to_csv(index=False)
-b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
-href = f'<a href="data:file/csv;base64,{b64}">Download CSV File</a> (right-click and save as &lt;some_name&gt;.csv)'
-st.markdown(href, unsafe_allow_html=True)
-
 def star_data_input(files):
 	cols = [0,1,2,3,5,6,7,8,12,13,14,15,17,18,19,20,24,25,26,27,29,30,31,32,34]
 	star_df = pd.DataFrame()
@@ -218,6 +132,92 @@ def xldownload(df):
     #b64 = base64.b64encode(xl.encode()).decode()  # strings <-> bytes conversions
     href = f'<a href="data:file/xls;base64,{b64}" download="merged_file.xlsx">Download Merged File as XLSX</a>'
     return href
+
+cols_needed = ['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude','distance','sort']
+cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','OpenDate','Latitude','Longitude','distance']
+dodge_pipeline = pd.read_csv('pipeline.csv')
+dodge_census = pd.read_csv('census.csv')
+
+st.title('Explore Your Hotels!!!')
+
+
+
+st.write('''
+         
+         All the hotel data you can handle bro!''')
+
+multiple_files = st.file_uploader(
+    "Multiple File Uploader",
+    accept_multiple_files=True
+)
+
+if st.button('Run STR Data from Multi-File Tool'):
+	#@st.cache
+	star_df,comp_set = star_data_input(multiple_files)
+	new_supply = dd.newsupply(float(comp_set.iloc[0,0]),float(radius),st_filter)
+	st.header('**STR Compiled Data**')
+	st.line_chart(star_df[['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']])
+	st.write(comp_set)
+	st.write(star_df)
+	st.markdown(filedownload(star_df), unsafe_allow_html=True)
+	st.markdown(xldownload(star_df), unsafe_allow_html=True)
+else:
+	st.info('Awaiting for STR Reports to be uploaded.')
+
+
+name_str = pd.DataFrame(dodge_census[['Property','StarID']])
+
+                
+# markets = 1
+# brands= dodge_pipeline.Chain.dropna().unique()
+
+# stars = dodge_census.StarID.dropna().unique()
+
+hotel = st.sidebar.selectbox('Select Hotel',name_str['Property'])
+st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str.Property == hotel]['StarID'].item())
+# market = st.sidebar.selectbox('Select Market',dodge_pipeline[dodge_pipeline.State == state]['Submarket'].dropna().unique())
+
+# brand = st.sidebar.selectbox('Select brand',brands)
+
+
+# st.write(state)
+# st.write(brand)
+
+data = dodge_pipeline[['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude']]
+
+star = st.sidebar.text_input('Enter Star ID')
+st_filter = st.sidebar.selectbox('Filter by?', ['radius','tract','city'])
+radius = st.sidebar.text_input('Radius?')
+if radius.isnumeric():
+    pass
+else:
+    radius = 0.0
+
+submit = st.sidebar.button('run new supply')
+if submit:
+    data = dd.newsupply(float(star),float(radius),st_filter)
+    
+
+# st.write('run a radius sample',dd.newsupply(star))
+
+
+st.write(data.dropna())
+
+# button_clicked = st.sidebar.button("OK")
+
+
+data.rename(columns = {'Latitude':'lat','Longitude':'lon'},inplace=True)
+data.dropna(inplace=True)
+
+st.map(data)
+
+st.header("File Download")
+
+csv = data.to_csv(index=False)
+b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
+href = f'<a href="data:file/csv;base64,{b64}">Download CSV File</a> (right-click and save as &lt;some_name&gt;.csv)'
+st.markdown(href, unsafe_allow_html=True)
+
 
 # Main panel
 #if st.sidebar.button('Submit'):
