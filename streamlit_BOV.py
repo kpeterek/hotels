@@ -29,6 +29,36 @@ import xlrd
 import matplotlib.pyplot as plt
 import pickle5 as pickle
 import datetime as dt
+from bs4 import BeautifulSoup
+import requests
+
+def tsa_info(moving_avg = 7):
+    url = 'https://www.tsa.gov/coronavirus/passenger-throughput'
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text,'lxml')
+    table = soup.find('table')
+    table_body = table.find('tbody')
+    rows = table_body.findAll('tr')
+    data = []
+    for row in rows:
+        cols = row.findAll('td')
+        cols = [ele.text.strip() for ele in cols]
+        data.append([ele if ele else 0 for ele in cols])
+        
+    tsa_data = pd.DataFrame(data,columns=['Date','2021','2020','2019'])
+    tsa_data.Date = pd.to_datetime(tsa_data.Date)
+    tsa_data.index = tsa_data.Date
+    tsa_data.drop(columns='Date',inplace=True)
+    tsa_data = tsa_data.sort_index(ascending=True)
+    tsa_data = tsa_data.apply(lambda x:x.str.replace(',','').astype('float'))
+    tsa_sma = tsa_data[tsa_data.index.year == 2021].rolling(7).mean().dropna()
+    tsa_sma['2020_indexed_2019'] = tsa_sma['2020']/tsa_sma['2019']
+    tsa_sma['2021_indexed_2019'] = tsa_sma['2021']/tsa_sma['2019']
+    tsa_sma['2019_index_line'] = 1.0
+    tsa_sma.iloc[:,-3:].loc['2021'].plot(title = 'TSA Travelers, 7-day Moving Average')
+    return tsa_sma.sort_values(by='Date',ascending = False),tsa_data
+    
+
 
 def star_data_input(files):
 	cols = [0,1,2,3,5,6,7,8,12,13,14,15,17,18,19,20,24,25,26,27,29,30,31,32,34]
@@ -177,7 +207,12 @@ else:
 
 name_str = pd.DataFrame(dodge_census[['Property','StarID']])
 
-                
+ 
+if st.button('Run STR Data from Multi-File Tool'):
+	#@st.cache
+	tsa_data = tsa_info()
+	st.line_chart(tsa_data)
+	
 # markets = 1
 # brands= dodge_pipeline.Chain.dropna().unique()
 
