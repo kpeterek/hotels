@@ -230,7 +230,7 @@ with open('Closings_pickle.pkl', 'rb') as f:
 	closings = pickle.load(f)
 
 broker = closings.groupby('Agent')
-selected_sector = st.sidebar.multiselect('Region name')
+selected_sector = st.sidebar.multiselect('Region name',closings['Region name'].unique(), closings['Region name'].unique())
 st.write(closings)
 
 
