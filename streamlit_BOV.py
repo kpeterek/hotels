@@ -232,7 +232,7 @@ with open('Closings_pickle.pkl', 'rb') as f:
 broker = closings.groupby('Agent')
 sorted_sector_unique = sorted(closings['Region name'].dropna().unique())
 selected_sector = st.sidebar.multiselect('Region name',sorted_sector_unique, sorted_sector_unique)
-st.write(closings[closings['Regiona name'].isin(selected_sector)]
+st.write(closings[closings['Region name'].isin(selected_sector)])
 
 
 # Main panel
@@ -248,4 +248,3 @@ st.write(closings[closings['Regiona name'].isin(selected_sector)]
 #else:
 #	st.info('Awaiting for ZIP file to be uploaded.')
 	
-
