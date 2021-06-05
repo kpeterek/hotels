@@ -12,7 +12,7 @@ def fin_planning():
   colRooms, colRevPAR = st.beta_columns(2)
 
   with colRooms:
-      roms = st.number_input("Enter the hotel room count: ", min_value=0.0, format='%d')
+      rooms = st.number_input("Enter the hotel room count: ", min_value=1, format='%d')
   with colRevPAR:
       rev_par = st.number_input("Enter stabilized RevPAR: ", min_value=0.0, format='%f')
 
