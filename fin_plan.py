@@ -9,12 +9,18 @@ def fin_planning():
   st.subheader("Rooms")
   rooms = st.beta_columns(1)
 
-  colRooms, colRevPAR = st.beta_columns(2)
+  colRooms, colRevPAR,colNOImargin = st.beta_columns(3)
 
   with colRooms:
       rooms = st.slider("Enter the hotel room count: ", min_value=1, max_value = 400, step = 1)
   with colRevPAR:
       rev_par = st.slider("Enter stabilized RevPAR: ", min_value=20, max_value = 300, step = 1)
+  with colRevPAR:
+      noi_margin = st.number_input("Enter your NOI Margin(%): ", min_value=0.0, format='%f')
+  ann_revenue = 365*rooms*rev_par
+  noi_value = ann_revenue*noi_margin
+  st.write(ann_revenue,noi_value)
+  
 
   with colExpenses1:
       st.subheader("Monthly Rental")
