@@ -237,15 +237,15 @@ if st.button('Run STR Data from Multi-File Tool'):
 	#@st.cache
 	star_df,comp_set = star_data_input(multiple_files)
 	st.write(comp_set.iloc[0,0],comp_set.iloc[0,1])
-	data  = dd.newsupply(float(comp_set.iloc[0,0]),7.0,'radius')
 	st.header('**STR Compiled Data**')
-	for star_id in star_df.STARID.unqiue():
+	for star_id in star_df['STARID'].unqiue():
 		st.line_chart(star_df[star_df.STARID == star_id][plot_cols])
 		st.header('**STR Competitive Set**')
 		st.write(comp_set)
 		st.header('**STR Statistics**')
 		st.write(star_df.reset_index())
 		st.header('**Incoming Supply**')
+		data  = dd.newsupply(float(comp_set.iloc[0,0]),7.0,'radius')
 		st.write(data.dropna())
 		data.rename(columns = {'Latitude':'lat','Longitude':'lon'},inplace=True)
 		data.dropna(inplace=True)
