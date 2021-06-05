@@ -4,10 +4,10 @@ import numpy as np
 
 
 def fin_planning():
-  @st.cache
   st.title("Hotel Valuation Calculator")
   st.header("**Hotel Details**")
   st.subheader("Rooms")
+  st.cache
   rooms = st.beta_columns(1)
 
   colRooms, colRevPAR,colNOImargin = st.beta_columns(3)
