@@ -31,6 +31,7 @@ import pickle5 as pickle
 import datetime as dt
 from bs4 import BeautifulSoup
 import requests
+import fin_plan as fp
 
 cols_needed = ['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude','distance','sort']
 cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','OpenDate','Latitude','Longitude','distance']
@@ -274,7 +275,7 @@ def main():
 			href = f'<a href="data:file/csv;base64,{b64}">Download CSV File</a> (right-click and save as &lt;some_name&gt;.csv)'
 			st.markdown(href, unsafe_allow_html=True)
 	elif choice == 'Quick Deal Analysis':
-		1
+		fin_plan()
 		
 
 	
