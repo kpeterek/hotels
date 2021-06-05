@@ -18,9 +18,9 @@ def fin_planning():
       noi_margin = st.number_input("Enter your NOI Margin(%): ", min_value=0,step = 1,format='%d')/100
   ann_revenue = 365*rooms*rev_par
   noi_value = ann_revenue*noi_margin
-  md_results = f"Annual Revenue of: $**{ann_revenue:,.0f}**."
-  st.markdown(md_results)
-  st.subheader(" $" + str(round(ann_revenue,2)))
+  #f"Annual Revenue of: $**{365*rooms*rev_par:,.0f}**."
+  st.markdown(f"Annual Revenue of: $**{365*rooms*rev_par:,.0f}**.")
+
   
 
   with colExpenses1:
