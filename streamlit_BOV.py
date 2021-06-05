@@ -249,7 +249,7 @@ def main():
     			radius = 0.0
 		submit = st.sidebar.button('run new supply')
 		if submit:
-    			data = dd.newsupply(float(star),float(radius),st_filter)
+			data = dd.newsupply(float(star),float(radius),st_filter)
 			st.write(data.dropna())
 			data.rename(columns = {'Latitude':'lat','Longitude':'lon'},inplace=True)
 			data.dropna(inplace=True)
