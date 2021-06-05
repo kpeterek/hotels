@@ -31,6 +31,7 @@ import pickle5 as pickle
 import datetime as dt
 from bs4 import BeautifulSoup
 import requests
+import plotly.graph_objects as go
 import fin_plan as fp
 
 cols_needed = ['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude','distance','sort']
