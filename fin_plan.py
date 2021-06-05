@@ -19,7 +19,7 @@ def fin_planning():
       noi_margin = st.number_input("Enter your NOI Margin(%): ", min_value=0,step = 1,format='%d')/100
   ann_revenue = 365*rooms*rev_par
   noi_value = ann_revenue*noi_margin
-  st.write("${:,0f}".format(ann_revenue),"${:,0f}".format(noi_value))
+  st.write("${:,0f}".format(float(ann_revenue)),"${:,0f}".format(float(noi_value)))
   
 
   with colExpenses1:
