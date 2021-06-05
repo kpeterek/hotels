@@ -7,7 +7,7 @@ def fin_planning():
   st.title("Hotel Valuation Calculator")
   st.header("**Hotel Details**")
   st.subheader("Rooms")
-  @st.cache
+  #@st.cache
   colRooms, colRevPAR,colNOImargin = st.beta_columns(3)
 
   with colRooms:
