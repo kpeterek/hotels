@@ -211,7 +211,7 @@ mkts =  kalibri_data['Market'].unique()
 mkt_choice = st.sidebar.selectbox('Select your Submarket:', mkts)
 try:
 	sub_mkts = kalibri_data[kalibri_data.isin([mkt_choice])]['Submarket'].unique()
-except:
+
 	
 submkt_choice = st.sidebar.multiselect('Select your Submarket:', sub_mkts)
 st.write(kalibri_data[(kalibri_data.Market.isin([mkt_choice]))&(kalibri_data.Submarket.isin([submkt_choice]))])
