@@ -4,11 +4,7 @@ import numpy as np
 
 
 def fin_planning():
-  st.set_page_config(
-      page_title="Hotel Valuation Calculator")
-
   st.title("Hotel Valuation Calculator")
-
   st.header("**Hotel Details**")
   st.subheader("Rooms")
   rooms = st.beta_columns(1)
