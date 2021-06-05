@@ -289,6 +289,7 @@ with open('Kalibri_zip_code_markets.pkl', 'rb') as f:
 with open('AllSubmarketData.pkl', 'rb') as f: 
 	kalibri_data = pickle.load(f)
 plot_cols = ['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']
+name_str = pd.DataFrame(dodge_census[['Property','StarID']])
 hotel = st.sidebar.selectbox('Select Hotel',name_str['Property'])
 st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str.Property == hotel]['StarID'].item())
 # market = st.sidebar.selectbox('Select Market',dodge_pipeline[dodge_pipeline.State == state]['Submarket'].dropna().unique())
