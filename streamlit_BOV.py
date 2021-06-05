@@ -35,10 +35,9 @@ import requests
 def main():
 	menu = ['BOV', 'Quick Deal Analysis','TSA Info']
 	choice = st.sidebar.selectbox('Menu',menu)
-	
+	st.title('Explore Your Hotels!!!')
 	if choice == 'BOV':
-		st.title('Explore Your Hotels!!!')
-	      	st.write('''All the hotel data you can handle bro!''')
+		st.write('''All the hotel data you can handle bro!''')
 	      	st.subheader('BOV Analysis')
 		multiple_files = st.file_uploader("STR Report File Dump - drop all the STR reports for your property here",accept_multiple_files=True)
 		if st.button('Run STR Data from Multi-File Tool'):
