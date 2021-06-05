@@ -44,8 +44,7 @@ with open('AllSubmarketData.pkl', 'rb') as f:
 	kalibri_data = pickle.load(f)
 plot_cols = ['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']
 name_str = pd.DataFrame(dodge_census[['Property','StarID']])
-hotel = st.sidebar.selectbox('Select Hotel',name_str['Property'])
-st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str.Property == hotel]['StarID'].item())
+
 
 
 def local_css(file_name):
@@ -252,6 +251,8 @@ def main():
 			tsa_sma, tsa_data = tsa_info()
 			st.line_chart(tsa_sma.iloc[:,-3:].loc['2021'])
 	elif choice == 'NewSupply':
+		hotel = st.sidebar.selectbox('Select Hotel',name_str['Property'])
+		st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str.Property == hotel]['StarID'].item())
 		data = dodge_pipeline[['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude']]
 		star = st.sidebar.text_input('Enter Star ID')
 		st_filter = st.sidebar.selectbox('Filter by?', ['radius','tract','city'])
