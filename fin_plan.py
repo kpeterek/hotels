@@ -17,9 +17,9 @@ def fin_planning():
       rev_par = st.slider("Enter stabilized RevPAR: ", min_value=20, max_value = 300, step = 1)
   with colRevPAR:
       noi_margin = st.number_input("Enter your NOI Margin(%): ", min_value=0,step = 1, format='%d')/100
-  ann_revenue = "${:,0f}".format(365*rooms*rev_par)
-  noi_value = "${:,0f}".format(ann_revenue*noi_margin)
-  st.write(ann_revenue,noi_value)
+  ann_revenue = 365*rooms*rev_par
+  noi_value = ann_revenue*noi_margin
+  st.write("${:,0f}".format(ann_revenue),"${:,0f}".format(noi_value))
   
 
   with colExpenses1:
