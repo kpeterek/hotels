@@ -192,7 +192,7 @@ def xldownload(df):
     return href
 
 def main():
-	menu = ['BOV', 'Quick Deal Analysis','TSA Info']
+	menu = ['BOV', 'Quick Deal Analysis','TSA Info','Kalibri','NewSupply']
 	choice = st.sidebar.selectbox('Menu',menu)
 	st.title('Explore Your Hotels!!!')
 	if choice == 'BOV':
@@ -220,10 +220,64 @@ def main():
 			st.markdown(xldownload(star_df.reset_index()), unsafe_allow_html=True)
 		else:
 			st.info('Awaiting for STR Reports to be uploaded.')
+	elif choice == 'Kalibri':
+		mkts =  kalibri_data['Market'].unique()
+		mkt_choice = st.sidebar.selectbox('Select your Submarket:', mkts)
+		sub_mkts = kalibri_data[kalibri_data.isin([mkt_choice])]['Submarket'].unique()
+		submkt_choice = st.sidebar.multiselect('Select your Submarket:', sub_mkts)
+		st.write(kalibri_data[(kalibri_data.Market.isin([mkt_choice]))&(kalibri_data.Submarket.isin([submkt_choice]))])
+		icon("search")
+		selected = st.text_input("", "Search...")
+		if st.button("OK"):
+			filtered_zip = search(selected,kalibri_zip)
+			mktname = filtered_zip.mktname.item()
+			st.write(filtered_zip)
+			st.write(kalibri_data[(kalibri_data.Period == 'Quarterly')&(kalibri_data.Market.isin([mktname]))])
+	elif chice == 'TSA Info':
+		if st.button('Run TSA Latest Data'):
+			#@st.cache
+			tsa_sma, tsa_data = tsa_info()
+			st.line_chart(tsa_sma.iloc[:,-3:].loc['2021'])
+	elif choice == 'NewSupply':
+		data = dodge_pipeline[['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude']]
+		star = st.sidebar.text_input('Enter Star ID')
+		st_filter = st.sidebar.selectbox('Filter by?', ['radius','tract','city'])
+		radius = st.sidebar.text_input('Radius?')
+		if radius.isnumeric():
+    			pass
+		else:
+    			radius = 0.0
+		submit = st.sidebar.button('run new supply')
+		if submit:
+    			data = dd.newsupply(float(star),float(radius),st_filter)
+			st.write(data.dropna())	
+			data.rename(columns = {'Latitude':'lat','Longitude':'lon'},inplace=True)
+			data.dropna(inplace=True)
+			st.map(data)
+			st.header("File Download")
+			csv = data.to_csv(index=False)
+			b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
+			href = f'<a href="data:file/csv;base64,{b64}">Download CSV File</a> (right-click and save as &lt;some_name&gt;.csv)'
+			st.markdown(href, unsafe_allow_html=True)
+		
+		
+
+	
+
+#years = df["year"].loc[df["make"] = make_choice]
+#year_choice = st.sidebar.selectbox('', years) 
+
+
+
 
 if __name__ == '__main__':
 	main()
 			
+	
+# markets = 1
+# brands= dodge_pipeline.Chain.dropna().unique()
+
+# stars = dodge_census.StarID.dropna().unique()
 cols_needed = ['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude','distance','sort']
 cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','OpenDate','Latitude','Longitude','distance']
 dodge_pipeline = pd.read_csv('pipeline.csv')
@@ -234,43 +288,7 @@ with open('Kalibri_zip_code_markets.pkl', 'rb') as f:
 	kalibri_zip = pickle.load(f)
 with open('AllSubmarketData.pkl', 'rb') as f: 
 	kalibri_data = pickle.load(f)
-	
-
-mkts =  kalibri_data['Market'].unique()
-mkt_choice = st.sidebar.selectbox('Select your Submarket:', mkts)
-sub_mkts = kalibri_data[kalibri_data.isin([mkt_choice])]['Submarket'].unique()
-
-	
-submkt_choice = st.sidebar.multiselect('Select your Submarket:', sub_mkts)
-st.write(kalibri_data[(kalibri_data.Market.isin([mkt_choice]))&(kalibri_data.Submarket.isin([submkt_choice]))])
-#years = df["year"].loc[df["make"] = make_choice]
-#year_choice = st.sidebar.selectbox('', years) 
 plot_cols = ['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']
-
-icon("search")
-selected = st.text_input("", "Search...")
-if st.button("OK"):
-	filtered_zip = search(selected,kalibri_zip)
-	mktname = filtered_zip.mktname.item()
-	st.write(filtered_zip)
-	st.write(kalibri_data[(kalibri_data.Period == 'Quarterly')&(kalibri_data.Market.isin([mktname]))])
-
-
-
-
-name_str = pd.DataFrame(dodge_census[['Property','StarID']])
-
- 
-if st.button('Run TSA Latest Data'):
-	#@st.cache
-	tsa_sma, tsa_data = tsa_info()
-	st.line_chart(tsa_sma.iloc[:,-3:].loc['2021'])
-	
-# markets = 1
-# brands= dodge_pipeline.Chain.dropna().unique()
-
-# stars = dodge_census.StarID.dropna().unique()
-
 hotel = st.sidebar.selectbox('Select Hotel',name_str['Property'])
 st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str.Property == hotel]['StarID'].item())
 # market = st.sidebar.selectbox('Select Market',dodge_pipeline[dodge_pipeline.State == state]['Submarket'].dropna().unique())
@@ -281,40 +299,7 @@ st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str.Property == hote
 # st.write(state)
 # st.write(brand)
 
-data = dodge_pipeline[['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude']]
 
-star = st.sidebar.text_input('Enter Star ID')
-st_filter = st.sidebar.selectbox('Filter by?', ['radius','tract','city'])
-radius = st.sidebar.text_input('Radius?')
-if radius.isnumeric():
-    pass
-else:
-    radius = 0.0
-
-submit = st.sidebar.button('run new supply')
-if submit:
-    data = dd.newsupply(float(star),float(radius),st_filter)
-    
-
-# st.write('run a radius sample',dd.newsupply(star))
-
-
-st.write(data.dropna())
-
-# button_clicked = st.sidebar.button("OK")
-
-
-data.rename(columns = {'Latitude':'lat','Longitude':'lon'},inplace=True)
-data.dropna(inplace=True)
-
-st.map(data)
-
-st.header("File Download")
-
-csv = data.to_csv(index=False)
-b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
-href = f'<a href="data:file/csv;base64,{b64}">Download CSV File</a> (right-click and save as &lt;some_name&gt;.csv)'
-st.markdown(href, unsafe_allow_html=True)
 
 #broker = closings.groupby('Agent')
 #sorted_region_unique = sorted(closings['Region name'].astype(str).unique())
