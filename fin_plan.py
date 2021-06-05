@@ -12,7 +12,7 @@ def fin_planning():
   colRooms, colRevPAR = st.beta_columns(2)
 
   with colRooms:
-      rooms = st.slider("Enter the hotel room count: ", min_value=1, max_value = 1000, step = 1)
+      rooms = st.slider("Enter the hotel room count: ", min_value=1, max_value = 400, step = 1)
   with colRevPAR:
       rev_par = st.slider("Enter stabilized RevPAR: ", min_value=20, max_value = 300, step = 1)
 
