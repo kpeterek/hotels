@@ -238,7 +238,7 @@ if st.button('Run STR Data from Multi-File Tool'):
 	star_df,comp_set = star_data_input(multiple_files)
 	st.write(comp_set.iloc[0,0],comp_set.iloc[0,1])
 	st.header('**STR Compiled Data**')
-	for star_id in star_df['STARID'].unqiue():
+	for star_id in star_df['STARID'].unique():
 		st.line_chart(star_df[star_df.STARID == star_id][plot_cols])
 		st.header('**STR Competitive Set**')
 		st.write(comp_set)
