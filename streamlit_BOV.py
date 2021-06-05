@@ -239,7 +239,7 @@ if st.button('Run STR Data from Multi-File Tool'):
 	st.write(comp_set.iloc[0,0],comp_set.iloc[0,1])
 	data  = dd.newsupply(float(comp_set.iloc[0,0]),7.0,'radius')
 	st.header('**STR Compiled Data**')
-	st.line_chart(star_dfgroupby('STARID')[plot_cols])
+	st.line_chart(star_df.groupby('STARID')[plot_cols])
 	st.header('**STR Competitive Set**')
 	st.write(comp_set)
 	st.header('**STR Statistics**')
