@@ -34,6 +34,8 @@ import requests
 import plotly.graph_objects as go
 import fin_plan as fp
 
+
+pd.options.display.float_format = "{:,.2f}".format
 cols_needed = ['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude','distance','sort']
 cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','OpenDate','Latitude','Longitude','distance']
 dodge_pipeline = pd.read_csv('pipeline.csv')
