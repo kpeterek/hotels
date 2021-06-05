@@ -22,7 +22,7 @@ def fin_planning():
   st.markdown(f"Annual NOI of: $**{noi_value:,.0f}**.")
 
   st.subheader("Valuation")
-  cap_rate = st.number_input("Enter your NOI Margin(%): ", min_value=0.0,step = .01,format='%f')
+  cap_rate = st.number_input("Enter your Cap Rate(%): ", min_value=0.0,step = .01,format='%f')
 '''
   st.markdown("---")
 
