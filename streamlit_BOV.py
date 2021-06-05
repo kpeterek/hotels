@@ -250,7 +250,7 @@ def main():
 		submit = st.sidebar.button('run new supply')
 		if submit:
     			data = dd.newsupply(float(star),float(radius),st_filter)
-			st.write(data.dropna())	
+			st.write(data.dropna())
 			data.rename(columns = {'Latitude':'lat','Longitude':'lon'},inplace=True)
 			data.dropna(inplace=True)
 			st.map(data)
