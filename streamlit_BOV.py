@@ -59,7 +59,7 @@ def main():
 				st.map(data)
 			st.markdown(filedownload(star_df.reset_index()), unsafe_allow_html=True)
 			st.markdown(xldownload(star_df.reset_index()), unsafe_allow_html=True)
-			else:
+		else:
 			st.info('Awaiting for STR Reports to be uploaded.')
 
 		
