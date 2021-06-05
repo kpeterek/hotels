@@ -23,6 +23,8 @@ def fin_planning():
 
   st.subheader("Valuation")
   cap_rate = st.number_input("Enter your Cap Rate(%): ", min_value=0.0,step = .01,format='%f')
+  valuation = noi_value/cap_rate
+   st.markdown(f"Property Value of: $**{valuation:,.0f}**.")
 '''
   st.markdown("---")
 
