@@ -216,7 +216,7 @@ submkt_choice = st.sidebar.multiselect('Select your Submarket:', sub_mkts)
 st.write(kalibri_data[(kalibri_data.Market.isin([mkt_choice]))&(kalibri_data.Submarket.isin([submkt_choice]))])
 #years = df["year"].loc[df["make"] = make_choice]
 #year_choice = st.sidebar.selectbox('', years) 
-plot_cols = [['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']]
+plot_cols = ['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']
 
 icon("search")
 selected = st.text_input("", "Search...")
