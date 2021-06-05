@@ -34,7 +34,7 @@ import requests
 
 def main():
 	menu = ['BOV', 'Quick Deal Analysis','TSA Info']
-	choice = st.sidebar.selectbox('Menu",menu)
+	choice = st.sidebar.selectbox('Menu',menu)
 	
 	if choice == 'BOV':
 		st.title('Explore Your Hotels!!!')
