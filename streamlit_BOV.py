@@ -209,12 +209,15 @@ st.write('''
          All the hotel data you can handle bro!''')
 mkts =  kalibri_data['Market'].unique()
 mkt_choice = st.sidebar.selectbox('Select your Submarket:', mkts)
-sub_mkts = kalibri_data[kalibri_data.isin([mkt_choice])]['Submarket'].unique()
+try:
+	sub_mkts = kalibri_data[kalibri_data.isin([mkt_choice])]['Submarket'].unique()
+except:
+	
 submkt_choice = st.sidebar.multiselect('Select your Submarket:', sub_mkts)
 st.write(kalibri_data[(kalibri_data.Market.isin([mkt_choice]))&(kalibri_data.Submarket.isin([submkt_choice]))])
 #years = df["year"].loc[df["make"] = make_choice]
 #year_choice = st.sidebar.selectbox('', years) 
-
+plot_cols = [['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']]
 
 icon("search")
 selected = st.text_input("", "Search...")
@@ -237,7 +240,7 @@ if st.button('Run STR Data from Multi-File Tool'):
 	st.write(comp_set.iloc[0,0],comp_set.iloc[0,1])
 	data  = dd.newsupply(float(comp_set.iloc[0,0]),7.0,'radius')
 	st.header('**STR Compiled Data**')
-	st.line_chart(star_df[['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']])
+	st.line_chart(star_dfgroupby('STARID')[plot_cols])
 	st.header('**STR Competitive Set**')
 	st.write(comp_set)
 	st.header('**STR Statistics**')
