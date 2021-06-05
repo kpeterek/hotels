@@ -8,6 +8,10 @@ body {
     border-radius: 50%;
     height: 3em;
     width: 10em;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .stTextInput>div>div>input {
