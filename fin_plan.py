@@ -22,7 +22,8 @@ def fin_planning():
   st.markdown(f"Annual NOI of: $**{noi_value:,.0f}**.")
 
   st.subheader("Valuation")
-  '''
+
+'''
   st.markdown("---")
 
   st.header("**Forecast Savings**")
@@ -78,3 +79,5 @@ def fin_planning():
                      yaxis_title='Amount($)')
 
   st.plotly_chart(fig, use_container_width=True)
+  
+  '''
