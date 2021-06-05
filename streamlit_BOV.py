@@ -32,6 +32,41 @@ import datetime as dt
 from bs4 import BeautifulSoup
 import requests
 
+def main():
+	menu = ['BOV', 'Quick Deal Analysis','TSA Info']
+	choice = st.sidebar.selectbox('Menu",menu)
+	
+	if choice == 'BOV':
+		st.title('Explore Your Hotels!!!')
+	      	st.write('''         
+         All the hotel data you can handle bro!''')
+	      	st.subheader('BOV Analysis')
+		multiple_files = st.file_uploader("STR Report File Dump - drop all the STR reports for your property here",accept_multiple_files=True)
+		if st.button('Run STR Data from Multi-File Tool'):
+			#@st.cache
+			star_df,comp_set = star_data_input(multiple_files)
+			st.header('**STR Compiled Data**')
+			for star_id in star_df['STARID'].unique():
+				st.write(comp_set[comp_set['Subj_prop'] == star_id].iloc[0,0],comp_set[comp_set['Subj_prop'] == star_id].iloc[0,1])
+				st.line_chart(star_df[star_df.STARID == star_id][plot_cols])
+				st.header('**STR Competitive Set**')
+				st.write(comp_set[comp_set['Subj_prop'] == star_id])
+				st.header('**STR Statistics**')
+				st.write(star_df.reset_index())
+				st.header('**Incoming Supply**')
+				data  = dd.newsupply(float(comp_set.iloc[0,0]),7.0,'radius')
+				st.write(data.dropna())
+				data.rename(columns = {'Latitude':'lat','Longitude':'lon'},inplace=True)
+				data.dropna(inplace=True)
+				st.map(data)
+			st.markdown(filedownload(star_df.reset_index()), unsafe_allow_html=True)
+			st.markdown(xldownload(star_df.reset_index()), unsafe_allow_html=True)
+			else:
+			st.info('Awaiting for STR Reports to be uploaded.')
+
+		
+
+
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
@@ -199,14 +234,7 @@ with open('Kalibri_zip_code_markets.pkl', 'rb') as f:
 with open('AllSubmarketData.pkl', 'rb') as f: 
 	kalibri_data = pickle.load(f)
 	
-st.title('Explore Your Hotels!!!')
 
-
-
-
-st.write('''
-         
-         All the hotel data you can handle bro!''')
 mkts =  kalibri_data['Market'].unique()
 mkt_choice = st.sidebar.selectbox('Select your Submarket:', mkts)
 sub_mkts = kalibri_data[kalibri_data.isin([mkt_choice])]['Submarket'].unique()
@@ -227,33 +255,6 @@ if st.button("OK"):
 	st.write(kalibri_data[(kalibri_data.Period == 'Quarterly')&(kalibri_data.Market.isin([mktname]))])
 
 
-
-multiple_files = st.file_uploader(
-    "STR Report File Dump - drop all the STR reports for your property here",
-    accept_multiple_files=True
-)
-
-if st.button('Run STR Data from Multi-File Tool'):
-	#@st.cache
-	star_df,comp_set = star_data_input(multiple_files)
-	st.header('**STR Compiled Data**')
-	for star_id in star_df['STARID'].unique():
-		st.write(comp_set[comp_set['Subj_prop'] == star_id].iloc[0,0],comp_set[comp_set['Subj_prop'] == star_id].iloc[0,1])
-		st.line_chart(star_df[star_df.STARID == star_id][plot_cols])
-		st.header('**STR Competitive Set**')
-		st.write(comp_set[comp_set['Subj_prop'] == star_id])
-		st.header('**STR Statistics**')
-		st.write(star_df.reset_index())
-		st.header('**Incoming Supply**')
-		data  = dd.newsupply(float(comp_set.iloc[0,0]),7.0,'radius')
-		st.write(data.dropna())
-		data.rename(columns = {'Latitude':'lat','Longitude':'lon'},inplace=True)
-		data.dropna(inplace=True)
-		st.map(data)
-	st.markdown(filedownload(star_df.reset_index()), unsafe_allow_html=True)
-	st.markdown(xldownload(star_df.reset_index()), unsafe_allow_html=True)
-else:
-	st.info('Awaiting for STR Reports to be uploaded.')
 
 
 name_str = pd.DataFrame(dodge_census[['Property','StarID']])
