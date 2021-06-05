@@ -221,6 +221,9 @@ def main():
 		else:
 			st.info('Awaiting for STR Reports to be uploaded.')
 
+if __name__ == '__main__':
+	main()
+			
 cols_needed = ['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude','distance','sort']
 cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','OpenDate','Latitude','Longitude','distance']
 dodge_pipeline = pd.read_csv('pipeline.csv')
