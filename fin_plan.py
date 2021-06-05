@@ -19,7 +19,8 @@ def fin_planning():
   ann_revenue = 365*rooms*rev_par
   noi_value = ann_revenue*noi_margin
   #f"Annual Revenue of: $**{365*rooms*rev_par:,.0f}**."
-  st.markdown(f"Annual Revenue of: $**{365*rooms*rev_par:,.0f}**.")
+  st.markdown(f"Annual Revenue of: $**{ann_revenue:,.0f}**.")
+  st.markdown(f"Annual NOI of: $**{noi_value:,.0f}**.")
 
   
 
