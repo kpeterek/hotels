@@ -275,7 +275,7 @@ def main():
 			href = f'<a href="data:file/csv;base64,{b64}">Download CSV File</a> (right-click and save as &lt;some_name&gt;.csv)'
 			st.markdown(href, unsafe_allow_html=True)
 	elif choice == 'Quick Deal Analysis':
-		fin_plan()
+		fin_planning()
 		
 
 	
