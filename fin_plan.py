@@ -12,11 +12,11 @@ def fin_planning():
   colRooms, colRevPAR,colNOImargin = st.beta_columns(3)
 
   with colRooms:
-      rooms = st.slider("Enter the hotel room count: ", min_value=1, max_value = 400, step = 1)
+      rooms = st.slider("Enter the hotel room count: ", min_value=1, max_value = 400, step = 1,format='%d')
   with colRevPAR:
-      rev_par = st.slider("Enter stabilized RevPAR: ", min_value=20, max_value = 300, step = 1)
+      rev_par = st.slider("Enter stabilized RevPAR: ", min_value=20, max_value = 300, step = 1,format='%d')
   with colRevPAR:
-      noi_margin = st.number_input("Enter your NOI Margin(%): ", min_value=0,step = 1)/100
+      noi_margin = st.number_input("Enter your NOI Margin(%): ", min_value=0,step = 1,format='%d')/100
   ann_revenue = 365*rooms*rev_par
   noi_value = ann_revenue*noi_margin
   st.write("${:,0f}".format(ann_revenue),"${:,0f}".format(noi_value))
