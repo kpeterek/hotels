@@ -5,18 +5,16 @@ import numpy as np
 
 def fin_planning():
   st.set_page_config(
-      page_title="Financial Planning Calculator")
+      page_title="Hotel Valuation Calculator")
 
-  st.title("Financial Planning Calculator")
+  st.title("Hotel Valuation Calculator")
 
-  st.header("**Monthly Income**")
-  st.subheader("Salary")
-  colAnnualSal, colTax = st.beta_columns(2)
+  st.header("**Hotel Details**")
+  st.subheader("Rooms")
+  rooms = st.beta_columns(1)
 
   with colAnnualSal:
-      salary = st.number_input("Enter your annual salary($): ", min_value=0.0, format='%f')
-  with colTax:
-      tax_rate = st.number_input("Enter your tax rate(%): ", min_value=0.0, format='%f')
+      salary = st.number_input("Enter the room count of the Hotel: ", min_value=0.0, format='%f')
 
   tax_rate = tax_rate / 100.0
   salary_after_taxes = salary * (1 - tax_rate)
