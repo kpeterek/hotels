@@ -209,8 +209,7 @@ st.write('''
          All the hotel data you can handle bro!''')
 mkts =  kalibri_data['Market'].unique()
 mkt_choice = st.sidebar.selectbox('Select your Submarket:', mkts)
-try:
-	sub_mkts = kalibri_data[kalibri_data.isin([mkt_choice])]['Submarket'].unique()
+sub_mkts = kalibri_data[kalibri_data.isin([mkt_choice])]['Submarket'].unique()
 
 	
 submkt_choice = st.sidebar.multiselect('Select your Submarket:', sub_mkts)
