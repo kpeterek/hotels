@@ -9,11 +9,12 @@ def fin_planning():
   st.subheader("Rooms")
   rooms = st.beta_columns(1)
 
-  with rooms:
-      salary = st.slider("Enter the room count of the Hotel: ", min_value=0, format='int')
+  colRooms, colRevPAR = st.beta_columns(2)
 
-  st.header("**Monthly Expenses**")
-  colExpenses1, colExpenses2 = st.beta_columns(2)
+  with colRooms:
+      roms = st.number_input("Enter the hotel room count: ", min_value=0.0, format='%f')
+  with colRevPAR:
+      rev_par = st.number_input("Enter stabilized RevPAR: ", min_value=0.0, format='%f')
 
   with colExpenses1:
       st.subheader("Monthly Rental")
