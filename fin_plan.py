@@ -9,12 +9,8 @@ def fin_planning():
   st.subheader("Rooms")
   rooms = st.beta_columns(1)
 
-  with colAnnualSal:
-      salary = st.number_input("Enter the room count of the Hotel: ", min_value=0.0, format='%f')
-
-  tax_rate = tax_rate / 100.0
-  salary_after_taxes = salary * (1 - tax_rate)
-  monthly_takehome_salary = round(salary_after_taxes / 12.0, 2)
+  with rooms:
+      salary = st.slider("Enter the room count of the Hotel: ", min_value=0, format='int')
 
   st.header("**Monthly Expenses**")
   colExpenses1, colExpenses2 = st.beta_columns(2)
