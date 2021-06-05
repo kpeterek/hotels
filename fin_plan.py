@@ -14,7 +14,7 @@ def fin_planning():
   with colRooms:
       rooms = st.number_input("Enter the hotel room count: ", min_value=1, format='%d')
   with colRevPAR:
-      rev_par = st.slider("Enter stabilized RevPAR: ", value=100)
+      rev_par = st.slider("Enter stabilized RevPAR: ", min_value=1, max_value = 1000, step = 1)
 
   with colExpenses1:
       st.subheader("Monthly Rental")
