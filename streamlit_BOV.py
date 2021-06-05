@@ -32,37 +32,7 @@ import datetime as dt
 from bs4 import BeautifulSoup
 import requests
 
-def main():
-	menu = ['BOV', 'Quick Deal Analysis','TSA Info']
-	choice = st.sidebar.selectbox('Menu',menu)
-	st.title('Explore Your Hotels!!!')
-	if choice == 'BOV':
-		st.write('''All the hotel data you can handle bro!''')
-		st.subheader('BOV Analysis')
-		multiple_files = st.file_uploader("STR Report File Dump - drop all the STR reports for your property here",accept_multiple_files=True)
-		if st.button('Run STR Data from Multi-File Tool'):
-			#@st.cache
-			star_df,comp_set = star_data_input(multiple_files)
-			st.header('**STR Compiled Data**')
-			for star_id in star_df['STARID'].unique():
-				st.write(comp_set[comp_set['Subj_prop'] == star_id].iloc[0,0],comp_set[comp_set['Subj_prop'] == star_id].iloc[0,1])
-				st.line_chart(star_df[star_df.STARID == star_id][plot_cols])
-				st.header('**STR Competitive Set**')
-				st.write(comp_set[comp_set['Subj_prop'] == star_id])
-				st.header('**STR Statistics**')
-				st.write(star_df.reset_index())
-				st.header('**Incoming Supply**')
-				data  = dd.newsupply(float(comp_set.iloc[0,0]),7.0,'radius')
-				st.write(data.dropna())
-				data.rename(columns = {'Latitude':'lat','Longitude':'lon'},inplace=True)
-				data.dropna(inplace=True)
-				st.map(data)
-			st.markdown(filedownload(star_df.reset_index()), unsafe_allow_html=True)
-			st.markdown(xldownload(star_df.reset_index()), unsafe_allow_html=True)
-		else:
-			st.info('Awaiting for STR Reports to be uploaded.')
 
-		
 
 
 def local_css(file_name):
@@ -220,6 +190,36 @@ def xldownload(df):
     #b64 = base64.b64encode(xl.encode()).decode()  # strings <-> bytes conversions
     href = f'<a href="data:file/xls;base64,{b64}" download="merged_file.xlsx">Download Merged File as XLSX</a>'
     return href
+
+def main():
+	menu = ['BOV', 'Quick Deal Analysis','TSA Info']
+	choice = st.sidebar.selectbox('Menu',menu)
+	st.title('Explore Your Hotels!!!')
+	if choice == 'BOV':
+		st.write('''All the hotel data you can handle bro!''')
+		st.subheader('BOV Analysis')
+		multiple_files = st.file_uploader("STR Report File Dump - drop all the STR reports for your property here",accept_multiple_files=True)
+		if st.button('Run STR Data from Multi-File Tool'):
+			#@st.cache
+			star_df,comp_set = star_data_input(multiple_files)
+			st.header('**STR Compiled Data**')
+			for star_id in star_df['STARID'].unique():
+				st.write(comp_set[comp_set['Subj_prop'] == star_id].iloc[0,0],comp_set[comp_set['Subj_prop'] == star_id].iloc[0,1])
+				st.line_chart(star_df[star_df.STARID == star_id][plot_cols])
+				st.header('**STR Competitive Set**')
+				st.write(comp_set[comp_set['Subj_prop'] == star_id])
+				st.header('**STR Statistics**')
+				st.write(star_df.reset_index())
+				st.header('**Incoming Supply**')
+				data  = dd.newsupply(float(comp_set.iloc[0,0]),7.0,'radius')
+				st.write(data.dropna())
+				data.rename(columns = {'Latitude':'lat','Longitude':'lon'},inplace=True)
+				data.dropna(inplace=True)
+				st.map(data)
+			st.markdown(filedownload(star_df.reset_index()), unsafe_allow_html=True)
+			st.markdown(xldownload(star_df.reset_index()), unsafe_allow_html=True)
+		else:
+			st.info('Awaiting for STR Reports to be uploaded.')
 
 cols_needed = ['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude','distance','sort']
 cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','OpenDate','Latitude','Longitude','distance']
