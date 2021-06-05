@@ -43,7 +43,7 @@ def icon(icon_name):
     st.markdown(f'<i class="material-icons">{icon_name}</i>', unsafe_allow_html=True)
 
 local_css("style.css")
-remote_css('https://fonts.googleapis.com/icon?family=Tangerine')
+remote_css('https://fonts.googleapis.com/css2')
 
 def search(regex: str, df, case=False):
     """Search all the text columns of `df`, return rows with any matches."""
