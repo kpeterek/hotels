@@ -8,8 +8,6 @@ def fin_planning():
   st.header("**Hotel Details**")
   st.subheader("Rooms")
   @st.cache
-  rooms = st.beta_columns(1)
-
   colRooms, colRevPAR,colNOImargin = st.beta_columns(3)
 
   with colRooms:
