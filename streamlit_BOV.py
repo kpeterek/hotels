@@ -32,7 +32,20 @@ import datetime as dt
 from bs4 import BeautifulSoup
 import requests
 
-
+cols_needed = ['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude','distance','sort']
+cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','OpenDate','Latitude','Longitude','distance']
+dodge_pipeline = pd.read_csv('pipeline.csv')
+dodge_census = pd.read_csv('census.csv')
+with open('Closings_pickle.pkl', 'rb') as f: 
+	closings = pickle.load(f)
+with open('Kalibri_zip_code_markets.pkl', 'rb') as f: 
+	kalibri_zip = pickle.load(f)
+with open('AllSubmarketData.pkl', 'rb') as f: 
+	kalibri_data = pickle.load(f)
+plot_cols = ['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']
+name_str = pd.DataFrame(dodge_census[['Property','StarID']])
+hotel = st.sidebar.selectbox('Select Hotel',name_str['Property'])
+st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str.Property == hotel]['StarID'].item())
 
 
 def local_css(file_name):
@@ -278,20 +291,7 @@ if __name__ == '__main__':
 # brands= dodge_pipeline.Chain.dropna().unique()
 
 # stars = dodge_census.StarID.dropna().unique()
-cols_needed = ['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude','distance','sort']
-cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','OpenDate','Latitude','Longitude','distance']
-dodge_pipeline = pd.read_csv('pipeline.csv')
-dodge_census = pd.read_csv('census.csv')
-with open('Closings_pickle.pkl', 'rb') as f: 
-	closings = pickle.load(f)
-with open('Kalibri_zip_code_markets.pkl', 'rb') as f: 
-	kalibri_zip = pickle.load(f)
-with open('AllSubmarketData.pkl', 'rb') as f: 
-	kalibri_data = pickle.load(f)
-plot_cols = ['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']
-name_str = pd.DataFrame(dodge_census[['Property','StarID']])
-hotel = st.sidebar.selectbox('Select Hotel',name_str['Property'])
-st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str.Property == hotel]['StarID'].item())
+
 # market = st.sidebar.selectbox('Select Market',dodge_pipeline[dodge_pipeline.State == state]['Submarket'].dropna().unique())
 
 # brand = st.sidebar.selectbox('Select brand',brands)
