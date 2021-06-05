@@ -233,7 +233,7 @@ def main():
 			mktname = filtered_zip.mktname.item()
 			st.write(filtered_zip)
 			st.write(kalibri_data[(kalibri_data.Period == 'Quarterly')&(kalibri_data.Market.isin([mktname]))])
-	elif chice == 'TSA Info':
+	elif choice == 'TSA Info':
 		if st.button('Run TSA Latest Data'):
 			#@st.cache
 			tsa_sma, tsa_data = tsa_info()
