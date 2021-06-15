@@ -22,35 +22,37 @@ def newsupply(STR,radius=7,filter_by = 'radius'):
     dodge_pipeline = pd.read_csv('pipeline.csv')
     dodge_census = pd.read_csv('census.csv')
     phases = ['Underway','Planning','Final Planning']
-    if (dodge_census[dodge_census['StarID'] == STR]).any(axis=None) == True:
-        prop_name = dodge_census['Property'][dodge_census['StarID'] == STR].iloc[:,].item()
-        prop_city = dodge_census['City'][dodge_census['StarID'] == STR].iloc[:,].item()
-        coords_subj = str(dodge_census['Latitude'][dodge_census['StarID'] == STR].iloc[:,].item()),str(dodge_census['Longitude'][dodge_census['StarID'] == STR].iloc[:,].item())
-        phase_sort = {phases[0]:0,phases[1]:2,phases[2]:1}
-        SubTract = dodge_census['Submarket'].loc[dodge_census['StarID'] == STR].iloc[:,].item()
-        SubMkt = dodge_census['Market'].loc[dodge_census['StarID'] == STR].iloc[:,].item()
-        new_supply = dodge_pipeline.loc[(dodge_pipeline['Phase'].isin(list(phases)))].dropna(subset=['Latitude','Longitude'])
-        new_supply['Lat,Lon'] = list(zip(new_supply['Latitude'],new_supply['Longitude']))
-        new_supply['distance'] = [geodesic(coords_subj,new_supply['Lat,Lon'].loc[new_supply.index == x]).miles for x in new_supply.index]
-        filter_input = filter_by
-        if filter_input == 'radius':
-            new_supply.query('distance <= @radius',inplace= True)
-            output_text = str(f'Within a {radius} mile radius of {prop_name}:')
-        elif filter_input == 'city':
-            new_supply = new_supply.query('City == @prop_city')
-            output_text = str(f"Based on {prop_city}'s (city) pipeline of {prop_name}: ")
-        elif filter_input == 'market':
-            new_supply = new_supply.query('Market == @SubMkt')
-            output_text = str(f'Based on the {SubMkt} (market) pipeline of {prop_name}:')
-        elif filter_input == 'tract':    
-            new_supply = new_supply.query('Submarket == @SubTract')
-            output_text = str(f'Based on the {SubTract} pipeline of {prop_name}:')
-        new_supply['sort'] = new_supply['Phase'].map(phase_sort)
-        new_supply.columns
-        output_ns = new_supply[cols_needed]
-        output_ns.sort_values('sort',ascending = True,inplace=True)
-    return output_ns
-
+    try:
+        if (dodge_census[dodge_census['StarID'] == STR]).any(axis=None) == True:
+            prop_name = dodge_census['Property'][dodge_census['StarID'] == STR].iloc[:,].item()
+            prop_city = dodge_census['City'][dodge_census['StarID'] == STR].iloc[:,].item()
+            coords_subj = str(dodge_census['Latitude'][dodge_census['StarID'] == STR].iloc[:,].item()),str(dodge_census['Longitude'][dodge_census['StarID'] == STR].iloc[:,].item())
+            phase_sort = {phases[0]:0,phases[1]:2,phases[2]:1}
+            SubTract = dodge_census['Submarket'].loc[dodge_census['StarID'] == STR].iloc[:,].item()
+            SubMkt = dodge_census['Market'].loc[dodge_census['StarID'] == STR].iloc[:,].item()
+            new_supply = dodge_pipeline.loc[(dodge_pipeline['Phase'].isin(list(phases)))].dropna(subset=['Latitude','Longitude'])
+            new_supply['Lat,Lon'] = list(zip(new_supply['Latitude'],new_supply['Longitude']))
+            new_supply['distance'] = [geodesic(coords_subj,new_supply['Lat,Lon'].loc[new_supply.index == x]).miles for x in new_supply.index]
+            filter_input = filter_by
+            if filter_input == 'radius':
+                new_supply.query('distance <= @radius',inplace= True)
+                output_text = str(f'Within a {radius} mile radius of {prop_name}:')
+            elif filter_input == 'city':
+                new_supply = new_supply.query('City == @prop_city')
+                output_text = str(f"Based on {prop_city}'s (city) pipeline of {prop_name}: ")
+            elif filter_input == 'market':
+                new_supply = new_supply.query('Market == @SubMkt')
+                output_text = str(f'Based on the {SubMkt} (market) pipeline of {prop_name}:')
+            elif filter_input == 'tract':    
+                new_supply = new_supply.query('Submarket == @SubTract')
+                output_text = str(f'Based on the {SubTract} pipeline of {prop_name}:')
+            new_supply['sort'] = new_supply['Phase'].map(phase_sort)
+            new_supply.columns
+            output_ns = new_supply[cols_needed]
+            output_ns.sort_values('sort',ascending = True,inplace=True)
+        return output_ns
+    except:
+        return none
 
  
 
