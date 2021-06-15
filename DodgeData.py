@@ -52,7 +52,7 @@ def newsupply(STR,radius=7,filter_by = 'radius'):
             output_ns.sort_values('sort',ascending = True,inplace=True)
         return output_ns
     except:
-        return None
+        return pd.DataFrame()
 
  
 
