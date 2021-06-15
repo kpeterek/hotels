@@ -47,10 +47,12 @@ def newsupply(STR,radius=7,filter_by = 'radius'):
             output_text = str(f'Based on the {SubTract} pipeline of {prop_name}:')
         new_supply['sort'] = new_supply['Phase'].map(phase_sort)
         new_supply.columns
-        output_ns = new_supply[cols_needed]
-        output_ns.sort_values('sort',ascending = True,inplace=True)
-    return output_ns
-        
+        if len(new_supply) > 0:
+            output_ns = new_supply[cols_needed]
+            output_ns.sort_values('sort',ascending = True,inplace=True)
+            return output_ns
+        else:
+            break
 
 
  
