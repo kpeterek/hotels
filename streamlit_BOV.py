@@ -129,7 +129,7 @@ def star_data_input(files):
 	comp_set = comp_set[~comp_set['STR#'].duplicated(keep='last')]
 	#star_df.to_clipboard(header=False)
 	star_df.columns = ['OCC_my_prop','OCC_comp','OCC_Index','OCC_Rank', 'OCC_per_chg_my_prop','OCC_per_chg_comp','OCC_per_chg_index','OCC_per_chg_rank','ADR_my_prop','ADR_comp','ADR_Index','ADR_Rank','ADR_per_chg_my_prop','ADR_per_chg_comp','ADR_per_chg_index','ADR_per_chg_rank','RevPAR_my_prop','RevPAR_comp','RevPAR_Index','RevPAR_Rank','RevPAR_per_chg_my_prop','RevPAR_per_chg_comp','RevPAR_per_chg_index','RevPAR_per_chg_rank','STARID']
-	star_df.reset_index().drop_duplicates(subset=['index','STARID'],inplace=True).set_index('Date')
+	star_df=star_df.reset_index().drop_duplicates(subset=['index','STARID'],keep='last').set_index('index')
 	print(comp_set)
 	return star_df,comp_set
 
