@@ -36,7 +36,7 @@ import fin_plan as fp
 
 
 pd.options.display.float_format = "{:,.2f}".format
-cols_needed = ['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude','distance','sort']
+cols_needed = ['Title','Address','City','State','PostalCode','Units','Open Date','Phase','Latitude','Longitude','distance','sort']
 cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','OpenDate','Latitude','Longitude','distance']
 dodge_pipeline = pd.read_csv('pipeline.csv')
 dodge_census = pd.read_csv('census.csv')
@@ -257,7 +257,7 @@ def main():
 	elif choice == 'NewSupply':
 		hotel = st.sidebar.selectbox('Select Hotel',name_str['Property'])
 		st.sidebar.write(hotel, ' has the StarID of ',name_str[name_str.Property == hotel]['StarID'].item())
-		data = dodge_pipeline[['Title','Address','City','State','PostalCode','Units','Target Open Date','Phase','Latitude','Longitude']]
+		data = dodge_pipeline[['Title','Address','City','State','PostalCode','Units','Open Date','Phase','Latitude','Longitude']]
 		star = st.sidebar.text_input('Enter Star ID')
 		st_filter = st.sidebar.selectbox('Filter by?', ['radius','tract','city'])
 		radius = st.sidebar.text_input('Radius?')
