@@ -21,7 +21,7 @@ def newsupply(STR,radius=7,filter_by = 'radius'):
     # radius = 40.0
     dodge_pipeline = pd.read_csv('pipeline.csv')
     dodge_census = pd.read_csv('census.csv')
-    phases = ['Underway','Planning','Final Planning']
+    phases = ['In Construction','Planning','Final Planning']
     try:
         if (dodge_census[dodge_census['StarID'] == STR]).any(axis=None) == True:
             prop_name = dodge_census['Property'][dodge_census['StarID'] == STR].iloc[:,].item()
