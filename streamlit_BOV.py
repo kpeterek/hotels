@@ -87,7 +87,7 @@ def tsa_info(moving_avg = 7):
         cols = [ele.text.strip() for ele in cols]
         data.append([ele if ele else 0 for ele in cols])
         
-    tsa_data = pd.DataFrame(data,columns=['Date','2021','2020','2019'])
+    tsa_data = pd.DataFrame(data,columns=['Date','2022','2021','2020','2019'])
     tsa_data.Date = pd.to_datetime(tsa_data.Date)
     tsa_data.index = tsa_data.Date
     tsa_data.drop(columns='Date',inplace=True)
