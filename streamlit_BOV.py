@@ -93,11 +93,12 @@ def tsa_info(moving_avg = 7):
     tsa_data.drop(columns='Date',inplace=True)
     tsa_data = tsa_data.sort_index(ascending=True)
     tsa_data = tsa_data.apply(lambda x:x.str.replace(',','').astype('float'))
-    tsa_sma = tsa_data[tsa_data.index.year == 2021].rolling(7).mean().dropna()
+    tsa_sma = tsa_data[tsa_data.index.year == 2022].rolling(7).mean().fillna(0)
     tsa_sma['2020_indexed_2019'] = tsa_sma['2020']/tsa_sma['2019']
     tsa_sma['2021_indexed_2019'] = tsa_sma['2021']/tsa_sma['2019']
+    tsa_sma['2022_indexed_2019'] = tsa_sma['2022']/tsa_sma['2019']
     tsa_sma['2019_index_line'] = 1.0
-    tsa_sma.iloc[:,-3:].loc['2021'].plot(title = 'TSA Travelers, 7-day Moving Average')
+    tsa_sma.iloc[:,-3:].loc['2022'].plot(title = 'TSA Travelers, 7-day Moving Average')
     return tsa_sma.sort_values(by='Date',ascending = False),tsa_data
     
 
