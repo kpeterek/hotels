@@ -283,12 +283,11 @@ def main():
 		#@st.cache
 		fp.fin_planning()
 	elif choice == 'Comp Search':
-		hotel = st.sidebar.selectbox('Select Hotel',name_str['Property'])
-		keys = st.text_input("search hotel keywords", "Holiday Inn Houston Downtown")
+		keys = st.sidebar.text_input("search hotel keywords", "Holiday Inn Houston Downtown")
 		data = str_census
 		submit = st.sidebar.button('Search Hotel')
 		if submit:
-			st.write(data.dropna())
+			st.write(dd.str_lookup(keys))
 			
 
 
