@@ -283,13 +283,13 @@ def main():
 		#@st.cache
 		fp.fin_planning()
 	elif choice == 'Comp Search':
-		keys = st.sidebar.text_input("search hotel keywords", "Holiday Inn Houston Downtown")
-		data = str_census
+		keys = st.sidebar.text_input("search hotel keywords")
 		submit = st.sidebar.button('Search Hotel')
 		if submit:
 			st.write(dd.str_lookup(keys))
-			
-
+			st.selectbox(str_census
+			star = st.sidebar.selectbox('Enter Hotel Star')
+			st.write(dd.str_find(int(star))
 
 #years = df["year"].loc[df["make"] = make_choice]
 #year_choice = st.sidebar.selectbox('', years) 
