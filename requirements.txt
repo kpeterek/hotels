@@ -14,4 +14,3 @@ requests
 plotly==4.14.3
 regex
 itertools
-more_itertools
