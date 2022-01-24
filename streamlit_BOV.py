@@ -286,9 +286,10 @@ def main():
 		keys = st.sidebar.text_input("search hotel keywords")
 		submit = st.sidebar.button('Search Hotel')
 		if submit:
-			st.write(dd.str_lookup(keys))
-			star = st.sidebar.text_input('Enter Hotel Star')
-			st.write(dd.str_find(int(star)))
+			data = dd.str_lookup(keys)
+			st.write(data)
+			star = st.text_input('Enter Hotel Star')
+			st.write(dd.str_find(star))
 
 #years = df["year"].loc[df["make"] = make_choice]
 #year_choice = st.sidebar.selectbox('', years) 
