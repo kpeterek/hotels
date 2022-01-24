@@ -12,3 +12,4 @@ pickle5
 beautifulsoup4==4.9.0
 requests
 plotly==4.14.3
+regex
