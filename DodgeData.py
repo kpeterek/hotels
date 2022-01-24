@@ -113,19 +113,7 @@ def str_lookup(keys,searchby = 'name',operational = 'y'):
                     df_op = df_op[df_op['Hotel Name'].str.lower().str.contains(word)]
                     cand_temp_list = df_op['Hotel Name'] + ' - ' + df_op['STR Number'].astype(str)
                     candidates.extend(cand_temp_list)
-            print(pd.Series(candidates).value_counts().head(10))
-            selection = input('Enter STR ID of Match, "more" for more values or "skip":')
-            if selection == 'more':
-                print(pd.Series(candidates).value_counts().head(50))
-                selection = input('Enter STR ID of Match, "more" for more values or "skip":')
-                if selection == 'skip':
-                    return 'nan'
-                else:
-                    return str_census[str_census['STR Number'] == int(selection)]
-            elif selection == 'skip':
-                return 'nan'
-            else:
-                return str_census[str_census['STR Number'] == int(selection)].T
+            return pd.Series(candidates)
         else:
             for word in perms:
                 df_nc = str_pipeline
@@ -133,36 +121,6 @@ def str_lookup(keys,searchby = 'name',operational = 'y'):
                     df_nc = df_nc[df_nc['Project Name'].str.lower().str.contains(word)]
                     cand_temp_list = df_nc['Project Name'] + ' - ' + df_nc['Project ID'].astype(str)
                     candidates.extend(cand_temp_list)
-            print(pd.Series(candidates).value_counts().head(10))
-            selection = input('Enter STR ID of Match, "more" for more values or "skip":')
-            if selection == 'more':
-                print(pd.Series(candidates).value_counts().head(50))
-                selection = input('Enter STR ID of Match, "more" for more values or "skip":')
-                if selection == 'skip':
-                    return 'nan'
-                else:
-                    return str_pipeline[str_pipeline['Project ID'] == int(selection)]
-            elif selection == 'skip':
-                return 'nan'
-            else:
-                return str_pipeline[str_pipeline['Project ID'] == int(selection)].T
-            return df_nc.T
-    elif searchby != 'name':
-        # keywords = list(input('Enter Hotel Name Keywords:').lower().split(' '))
-        city = input('Which City is the Hotel in: ')
-        state = input('Which State is the Hotel in: ')
-        if operational == 'y':
-            df_op = df_op[(df_op.City.str.lower() == city.lower()) & (df_op.State.str.lower() == state.lower())]
-            for word in perms:
-                df_op = str_census
-                if len(df_op[df_op['Hotel Name'].str.lower().str.contains(word)]) > 0:
-                    df_op = df_op[df_op['Hotel Name'].str.lower().str.contains(word)]
-            return df_op.T
-        else:
-            df_nc = df_nc[(df_nc.City.str.lower() == city.lower()) & (df_nc.State.str.lower() == state.lower())]
-            for word in keywords:
-                df_nc = str_pipeline
-                if len(df_nc[df_nc['Project Name'].str.lower().str.contains(word)]) > 0:
-                    df_nc = df_nc[df_nc['Project Name'].str.lower().str.contains(word)]
-            return df_nc.T
+        return pd.Series(candidates)
+   
   
