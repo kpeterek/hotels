@@ -138,5 +138,5 @@ def nearby_comps_str(STR,radius=7):
     return distance_census
 
 def str_find(star):
-    ret_df = str_census[str_census['STR Number'].isin(star)]
+    ret_df = str_census[str_census['STR Number'] == star)]
     return ret_df.T
