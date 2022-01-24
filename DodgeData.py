@@ -12,8 +12,8 @@ import numpy as np
 import geopandas as gpd
 from geopy.distance import geodesic
 import re
-from itertools import more_itertools
-import itertools
+import more_itertools
+from itertools import permutations
 
 
 
