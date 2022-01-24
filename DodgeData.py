@@ -20,7 +20,7 @@ from itertools import permutations
 cols_needed = ['Title','Address','City','State','PostalCode','Units','Open Date','Phase','Latitude','Longitude','distance','sort']
 cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','Latitude','Longitude','distance']
 str_census = pd.read_csv('str_census_small.csv')
-
+str_pipeline = pd.read_csv('pipeline.csv')
 
 def newsupply(STR,radius=7,filter_by = 'radius'):
     # STR = int(input('Enter the Subject Property STR Number?: '))
