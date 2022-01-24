@@ -287,7 +287,6 @@ def main():
 		submit = st.sidebar.button('Search Hotel')
 		if submit:
 			st.write(dd.str_lookup(keys))
-			st.selectbox(str_census
 			star = st.sidebar.text_input('Enter Hotel Star')
 			st.write(dd.str_find(int(star))
 
