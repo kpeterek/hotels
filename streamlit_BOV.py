@@ -40,6 +40,7 @@ cols_needed = ['Title','Address','City','State','PostalCode','Units','Open Date'
 cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms','OpenDate','Latitude','Longitude','distance']
 dodge_pipeline = pd.read_csv('pipeline.csv')
 dodge_census = pd.read_csv('census.csv')
+str_census = pd.read_csv('str_census_small.csv')
 with open('Closings_pickle.pkl', 'rb') as f: 
 	closings = pickle.load(f)
 with open('Kalibri_zip_code_markets.pkl', 'rb') as f: 
@@ -209,7 +210,7 @@ def xldownload(df):
     return href
 
 def main():
-	menu = ['BOV', 'Quick Deal Analysis','TSA Info','Kalibri','NewSupply']
+	menu = ['BOV', 'Quick Deal Analysis','TSA Info','Kalibri','NewSupply','Comp Search']
 	choice = st.sidebar.selectbox('Menu',menu)
 	st.title('Explore Your Hotels!!!')
 	if choice == 'BOV':
@@ -281,9 +282,21 @@ def main():
 	elif choice == 'Quick Deal Analysis':
 		#@st.cache
 		fp.fin_planning()
-		
-
-	
+	elif choice == 'Comp Search':
+		hotel = st.sidebar.selectbox('Select Hotel',name_str['Property'])
+		keys = st.text_input("search hotel keywords", "Holiday Inn Houston Downtown")
+		data = str_census
+		submit = st.sidebar.button('Search Hotel')
+		if submit:
+			st.write(data.dropna())
+			data.rename(columns = {'Latitude':'lat','Longitude':'lon'},inplace=True)
+			data.dropna(inplace=True)
+			st.map(data)
+			st.header("File Download")
+			csv = data.to_csv(index=False)
+			b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
+			href = f'<a href="data:file/csv;base64,{b64}">Download CSV File</a> (right-click and save as &lt;some_name&gt;.csv)'
+			st.markdown(href, unsafe_allow_html=True)
 
 #years = df["year"].loc[df["make"] = make_choice]
 #year_choice = st.sidebar.selectbox('', years) 
