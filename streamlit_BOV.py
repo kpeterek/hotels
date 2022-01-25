@@ -304,8 +304,8 @@ def main():
 		selected_indices = st.multiselect('Select rows:', comps['Hotel Name'])
 		submit4 = st.button('Pull final compset')
 		if submit4:
-			selected_rows = comps[comps['Hotel Name'].isin(selected_indices)]
-		st.write('### Selected Rows', selected_rows)
+			selected_rows = comps[comps['Hotel Name'].isin(list(selected_indices))]
+		st.Table(selected_rows)
 
 
 #years = df["year"].loc[df["make"] = make_choice]
