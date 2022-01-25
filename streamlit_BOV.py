@@ -285,7 +285,7 @@ def main():
 		submit3 = st.button('Get Compset')
 		if submit3:
 			comps = dd.nearby_comps_str(int(star),radius=float(radius))
-			st.write('### Full Dataset', comps.loc[(comps['Chain Scale']==chain_scale)])
+			st.write('### Full Dataset', comps.loc[(comps['Chain Scale'].isin(chain_scale)])
 		#selected_indices = st.multiselect('Select rows:', comps.index)
 		#submit4 = st.button('Pull final compset')
 		#if submit4:
