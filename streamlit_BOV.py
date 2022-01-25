@@ -290,9 +290,9 @@ def main():
 			st.write(data)
 			star = st.text_input('Enter Hotel Star')
 			submit2 = st.button('Retrieve Hotel')
-			if submit2:
-				hotel = dd.str_find(star)
-				st.write(hotel)
+		if submit2:
+			hotel = dd.str_find(star)
+			st.write(hotel)
 
 #years = df["year"].loc[df["make"] = make_choice]
 #year_choice = st.sidebar.selectbox('', years) 
