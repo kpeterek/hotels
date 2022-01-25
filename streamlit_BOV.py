@@ -286,7 +286,7 @@ def main():
 			comps = dd.nearby_comps_str(int(star),radius=float(radius))
 		chain_scale = comps['Chain Scale'].unique()
 		st.write('### Full Dataset', comps)
-		st.write('Results:', comps.loc[(comps['Chain Scale']==chain_scale)]
+		st.write('Results:', comps.loc[(comps['Chain Scale']==chain_scale)])
 		#selected_indices = st.multiselect('Select rows:', comps.index)
 		#submit4 = st.button('Pull final compset')
 		#if submit4:
