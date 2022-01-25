@@ -301,7 +301,7 @@ def main():
 		if submit3:
 			comps = dd.nearby_comps_str(int(star))
 		st.write('### Full Dataset', comps)
-		selected_indices = st.multiselect('Select rows:', comps['Hotel Name'])
+		selected_indices = st.multiselect('Select rows:', comps.index)
 		submit4 = st.button('Pull final compset')
 		if submit4:
 			selected_rows = comps[comps['Hotel Name'].isin(list(selected_indices))]
