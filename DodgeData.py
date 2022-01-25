@@ -113,7 +113,7 @@ def str_lookup(keys,searchby = 'name',operational = 'y'):
                     df_op = df_op[df_op['Hotel Name'].str.lower().str.contains(word)]
                     cand_temp_list = df_op['Hotel Name'] + ' - ' + df_op['STR Number'].astype(str)
                     candidates.extend(cand_temp_list)
-            return pd.Series(candidates)
+            return pd.Series(candidates).value_counts().head(10)
         else:
             for word in perms:
                 df_nc = str_pipeline
@@ -121,7 +121,7 @@ def str_lookup(keys,searchby = 'name',operational = 'y'):
                     df_nc = df_nc[df_nc['Project Name'].str.lower().str.contains(word)]
                     cand_temp_list = df_nc['Project Name'] + ' - ' + df_nc['Project ID'].astype(str)
                     candidates.extend(cand_temp_list)
-        return pd.Series(candidates)
+        return pd.Series(candidates).value_counts().head(10)
    
   
 def nearby_comps_str(STR,radius=7):
