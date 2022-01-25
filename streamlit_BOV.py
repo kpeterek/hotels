@@ -210,7 +210,7 @@ def xldownload(df):
     return href
 
 def main():
-	menu = ['BOV', 'Quick Deal Analysis','TSA Info','Kalibri','NewSupply','Comp Search']
+	menu = ['BOV','TSA Info','NewSupply','Comp Search']
 	choice = st.sidebar.selectbox('Menu',menu)
 	st.title('Explore Your Hotels!!!')
 	if choice == 'BOV':
@@ -238,19 +238,6 @@ def main():
 			st.markdown(xldownload(star_df.reset_index()), unsafe_allow_html=True)
 		else:
 			st.info('Awaiting for STR Reports to be uploaded.')
-	elif choice == 'Kalibri':
-		mkts =  kalibri_data['Market'].unique()
-		mkt_choice = st.sidebar.selectbox('Select your Submarket:', mkts)
-		sub_mkts = kalibri_data[kalibri_data.isin([mkt_choice])]['Submarket'].unique()
-		submkt_choice = st.sidebar.multiselect('Select your Submarket:', sub_mkts)
-		st.write(kalibri_data[(kalibri_data.Market.isin([mkt_choice]))&(kalibri_data.Submarket.isin([submkt_choice]))])
-		icon("search")
-		selected = st.text_input("", "Search...")
-		if st.button("OK"):
-			filtered_zip = search(selected,kalibri_zip)
-			mktname = filtered_zip.mktname.item()
-			st.write(filtered_zip)
-			st.write(kalibri_data[(kalibri_data.Period == 'Quarterly')&(kalibri_data.Market.isin([mktname]))])
 	elif choice == 'TSA Info':
 		if st.button('Run TSA Latest Data'):
 			#@st.cache
@@ -279,9 +266,6 @@ def main():
 			b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
 			href = f'<a href="data:file/csv;base64,{b64}">Download CSV File</a> (right-click and save as &lt;some_name&gt;.csv)'
 			st.markdown(href, unsafe_allow_html=True)
-	elif choice == 'Quick Deal Analysis':
-		#@st.cache
-		fp.fin_planning()
 	elif choice == 'Comp Search':
 		#@st.cache
 		keys = st.sidebar.text_input("search hotel keywords")
