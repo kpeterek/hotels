@@ -128,7 +128,7 @@ def nearby_comps_str(STR,radius=7):
     R = 3958.756
     prop_name = str_census['Hotel Name'][str_census['STR Number'] == STR].iloc[:,].item()
     prop_city = str_census['City'][str_census['STR Number'] == STR].iloc[:,].item()
-    coords_subj = str(str_census.iloc[:,26][str_census['STR Number'] == STR].iloc[:,].item()),str(str_census.iloc[:,27][str_census['STR Number'] == STR].iloc[:,].item())
+    coords_subj = str(str_census.iloc[:,27][str_census['STR Number'] == STR].iloc[:,].item()),str(str_census.iloc[:,28][str_census['STR Number'] == STR].iloc[:,].item())
     lat_min,lat_max = math.degrees(math.radians(float(coords_subj[0]))-radius/R),math.degrees(math.radians(float(coords_subj[0]))+radius/R)
     lon_min,lon_max = math.degrees(math.radians(float(coords_subj[1]))-math.asin(math.sin(radius/R)/math.cos(math.radians(float(coords_subj[0]))))),math.degrees(math.radians(float(coords_subj[1]))+math.asin(math.sin(radius/R)/math.cos(math.radians(float(coords_subj[0])))))
     distance_census = str_census.dropna(subset=['Latitude','Longitude'])[(str_census.Latitude.between(lat_min,lat_max))&(str_census.Longitude.between(lon_min,lon_max))]
