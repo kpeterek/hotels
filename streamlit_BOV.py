@@ -285,6 +285,9 @@ def main():
 	elif choice == 'Comp Search':
 		keys = st.sidebar.text_input("search hotel keywords")
 		submit = st.sidebar.button('Search Hotel')
+		data = pd.DataFrame()
+		hotel = pd.DataFrame()
+		comps = pd.DataFrame()
 		if submit:
 			data = dd.str_lookup(keys)
 		st.write(data)
