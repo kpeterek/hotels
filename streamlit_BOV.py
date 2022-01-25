@@ -284,7 +284,6 @@ def main():
 		fp.fin_planning()
 	elif choice == 'Comp Search':
 		keys = st.sidebar.text_input("search hotel keywords")
-		comps
 		submit = st.sidebar.button('Search Hotel')
 		data = pd.DataFrame()
 		hotel = pd.DataFrame()
