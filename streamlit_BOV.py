@@ -273,6 +273,7 @@ def main():
 		data = pd.DataFrame()
 		hotel = pd.DataFrame()
 		comps = pd.DataFrame()
+		@st.cache
 		if submit:
 			data = dd.str_lookup(keys)
 		st.write(data)
@@ -285,12 +286,14 @@ def main():
 		submit3 = st.button('Get Compset')
 		if submit3:
 			comps = dd.nearby_comps_str(int(star),radius=float(radius))
+		chain_scale = comps['Chain Scale'].drop_duplicates()
 		st.write('### Full Dataset', comps)
-		selected_indices = st.multiselect('Select rows:', comps.index)
-		submit4 = st.button('Pull final compset')
-		if submit4:
-			selected_rows = comps[comps['Hotel Name'].isin(list(selected_indices))]
-		st.write(comps)
+		st.write('Results:', comps.loc[(comps['Chain Scale']=chain_scale)]
+		#selected_indices = st.multiselect('Select rows:', comps.index)
+		#submit4 = st.button('Pull final compset')
+		#if submit4:
+		#	selected_rows = comps[comps['Hotel Name'].isin(list(selected_indices))]
+		#st.write(comps)
 
 
 #years = df["year"].loc[df["make"] = make_choice]
