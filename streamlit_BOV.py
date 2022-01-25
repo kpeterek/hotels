@@ -297,7 +297,11 @@ def main():
 		if submit3:
 			comps = dd.nearby_comps_str(int(star))
 			st.write(comps)
-		selected_indices = st.multiselect('Select rows:', comps.index)
+			st.write('### Full Dataset', comps)
+			selected_indices = st.multiselect('Select rows:', comps['Hotel Name'])
+			selected_rows = comps[comps[selected_indices].isin(selected_indices)]
+			st.write('### Selected Rows', selected_rows)
+			
 
 #years = df["year"].loc[df["make"] = make_choice]
 #year_choice = st.sidebar.selectbox('', years) 
