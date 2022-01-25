@@ -290,7 +290,7 @@ def main():
 		submit4 = st.button('Pull final compset')
 		if submit4:
 			selected_rows = comps[comps['Hotel Name'].isin(list(selected_indices))]
-		st.Table(comps)
+		st.write(comps)
 
 
 #years = df["year"].loc[df["make"] = make_choice]
