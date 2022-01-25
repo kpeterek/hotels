@@ -297,6 +297,7 @@ def main():
 		if submit3:
 			comps = dd.nearby_comps_str(int(star))
 			st.write(comps)
+			selected_indices = st.multiselect('Select rows:', comps.index)
 
 #years = df["year"].loc[df["make"] = make_choice]
 #year_choice = st.sidebar.selectbox('', years) 
