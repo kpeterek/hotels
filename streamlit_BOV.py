@@ -292,7 +292,7 @@ def main():
 			submit2 = st.button('Retrieve Hotel')
 			if submit2:
 				hotel = str_find(star)
-				st.write(str_find(star))
+			st.write(str_find(star))
 
 #years = df["year"].loc[df["make"] = make_choice]
 #year_choice = st.sidebar.selectbox('', years) 
