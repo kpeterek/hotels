@@ -14,7 +14,7 @@ from geopy.distance import geodesic
 import re
 import more_itertools
 from itertools import permutations
-
+import math
 
 
 cols_needed = ['Title','Address','City','State','PostalCode','Units','Open Date','Phase','Latitude','Longitude','distance','sort']
