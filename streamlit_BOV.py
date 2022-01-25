@@ -284,6 +284,7 @@ def main():
 		fp.fin_planning()
 	elif choice == 'Comp Search':
 		keys = st.sidebar.text_input("search hotel keywords")
+		comps
 		submit = st.sidebar.button('Search Hotel')
 		data = pd.DataFrame()
 		hotel = pd.DataFrame()
@@ -299,11 +300,12 @@ def main():
 		submit3 = st.button('Get Compset')
 		if submit3:
 			comps = dd.nearby_comps_str(int(star))
-		st.write(comps)
 		st.write('### Full Dataset', comps)
 		selected_indices = st.multiselect('Select rows:', comps['Hotel Name'])
-		selected_rows = comps[comps[selected_indices].isin(selected_indices)]
-		st.write('### Selected Rows', selected_rows)
+		submit4 = st.button('Pull final compset')
+		if submit4:
+			selected_rows = comps[comps['Hotel Name'].isin(selected_indices)]
+			st.write('### Selected Rows', selected_rows)
 
 
 #years = df["year"].loc[df["make"] = make_choice]
