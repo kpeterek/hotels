@@ -281,9 +281,10 @@ def main():
 		if submit2:
 			hotel = dd.str_find(int(star))
 		st.write(hotel)
+		radius = st.text_input('Radius?')
 		submit3 = st.button('Get Compset')
 		if submit3:
-			comps = dd.nearby_comps_str(int(star))
+			comps = dd.nearby_comps_str(int(star),radius=float(radius))
 		st.write('### Full Dataset', comps)
 		selected_indices = st.multiselect('Select rows:', comps.index)
 		submit4 = st.button('Pull final compset')
