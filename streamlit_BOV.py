@@ -291,7 +291,7 @@ def main():
 		star = st.text_input('Enter Hotel Star')	
 		submit2 = st.button('Retrieve Hotel')
 		if submit2:
-			hotel = dd.str_find(star)
+			hotel = dd.str_find(int(star))
 			st.write(hotel)
 
 #years = df["year"].loc[df["make"] = make_choice]
