@@ -283,6 +283,7 @@ def main():
 		#@st.cache
 		fp.fin_planning()
 	elif choice == 'Comp Search':
+		#@st.cache
 		keys = st.sidebar.text_input("search hotel keywords")
 		submit = st.sidebar.button('Search Hotel')
 		data = pd.DataFrame()
@@ -304,7 +305,7 @@ def main():
 		submit4 = st.button('Pull final compset')
 		if submit4:
 			selected_rows = comps[comps['Hotel Name'].isin(selected_indices)]
-			st.write('### Selected Rows', selected_rows)
+		st.write('### Selected Rows', selected_rows)
 
 
 #years = df["year"].loc[df["make"] = make_choice]
