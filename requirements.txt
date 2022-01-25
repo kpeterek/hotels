@@ -1,5 +1,5 @@
 geopy==2.0.0
-pandas==1.4.0
+pandas==1.2.3
 numpy==1.19.3
 matplotlib==3.3.4
 geopandas==0.8.1
@@ -11,6 +11,5 @@ seaborn
 pickle5 
 beautifulsoup4==4.9.0
 requests
-plotly==4.14.3
 regex
 more-itertools
