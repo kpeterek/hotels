@@ -289,7 +289,7 @@ def main():
 			data = dd.str_lookup(keys)
 			st.write(data)
 			star = st.text_input('Enter Hotel Star')
-			submit2 = st.button('Retrieve Hotel')
+		submit2 = st.button('Retrieve Hotel')
 		if submit2:
 			hotel = dd.str_find(star)
 			st.write(hotel)
