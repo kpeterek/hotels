@@ -270,7 +270,6 @@ def main():
 		keys = st.sidebar.text_input("search hotel keywords")
 		submit = st.sidebar.button('Search Hotel')
 		chain_scale = st.sidebar.selectbox('Filter Comps by Chain Scale',str_census['Chain Scale'].unique())
-		submit5 = st.sidebar.button('Filter Comp by Chain Scale')
 		data = pd.DataFrame()
 		hotel = pd.DataFrame()
 		comps = pd.DataFrame()
@@ -286,9 +285,7 @@ def main():
 		submit3 = st.button('Get Compset')
 		if submit3:
 			comps = dd.nearby_comps_str(int(star),radius=float(radius))
-		st.write('### Full Dataset', comps)
-		if submit5:
-			st.write('Results:', comps.loc[(comps['Chain Scale']==chain_scale)])
+			st.write('### Full Dataset', comps.loc[(comps['Chain Scale']==chain_scale)])
 		#selected_indices = st.multiselect('Select rows:', comps.index)
 		#submit4 = st.button('Pull final compset')
 		#if submit4:
