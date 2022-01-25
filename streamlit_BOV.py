@@ -293,6 +293,10 @@ def main():
 		if submit2:
 			hotel = dd.str_find(int(star))
 			st.write(hotel)
+		submit3 = st.button('Get Compset')
+		if submit3:
+			comps = dd.nearby_comps_str(int(star))
+			st.write(comps)
 
 #years = df["year"].loc[df["make"] = make_choice]
 #year_choice = st.sidebar.selectbox('', years) 
