@@ -267,7 +267,6 @@ def main():
 			href = f'<a href="data:file/csv;base64,{b64}">Download CSV File</a> (right-click and save as &lt;some_name&gt;.csv)'
 			st.markdown(href, unsafe_allow_html=True)
 	elif choice == 'Comp Search':
-		@st.cache
 		keys = st.sidebar.text_input("search hotel keywords")
 		submit = st.sidebar.button('Search Hotel')
 		data = pd.DataFrame()
@@ -286,7 +285,6 @@ def main():
 		if submit3:
 			comps = dd.nearby_comps_str(int(star),radius=float(radius))
 		chain_scale = comps['Chain Scale'].drop_duplicates()
-		@st.cache(allow_output_mutation=True)
 		st.write('### Full Dataset', comps)
 		st.write('Results:', comps.loc[(comps['Chain Scale']=chain_scale)]
 		#selected_indices = st.multiselect('Select rows:', comps.index)
