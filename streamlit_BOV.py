@@ -287,21 +287,21 @@ def main():
 		submit = st.sidebar.button('Search Hotel')
 		if submit:
 			data = dd.str_lookup(keys)
-			st.write(data)
+		st.write(data)
 		star = st.text_input('Enter Hotel Star')	
 		submit2 = st.button('Retrieve Hotel')
 		if submit2:
 			hotel = dd.str_find(int(star))
-			st.write(hotel)
+		st.write(hotel)
 		submit3 = st.button('Get Compset')
 		if submit3:
 			comps = dd.nearby_comps_str(int(star))
-			st.write(comps)
-			st.write('### Full Dataset', comps)
-			selected_indices = st.multiselect('Select rows:', comps['Hotel Name'])
-			selected_rows = comps[comps[selected_indices].isin(selected_indices)]
-			st.write('### Selected Rows', selected_rows)
-			
+		st.write(comps)
+		st.write('### Full Dataset', comps)
+		selected_indices = st.multiselect('Select rows:', comps['Hotel Name'])
+		selected_rows = comps[comps[selected_indices].isin(selected_indices)]
+		st.write('### Selected Rows', selected_rows)
+
 
 #years = df["year"].loc[df["make"] = make_choice]
 #year_choice = st.sidebar.selectbox('', years) 
