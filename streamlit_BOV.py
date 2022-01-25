@@ -103,7 +103,7 @@ def tsa_info(moving_avg = 7):
     return tsa_sma.sort_values(by='Date',ascending = False),tsa_data
     
 
-
+@st.cache(allow_output_mutation=True)
 def star_data_input(files):
 	cols = [0,1,2,3,5,6,7,8,12,13,14,15,17,18,19,20,24,25,26,27,29,30,31,32,34]
 	star_df = pd.DataFrame()
@@ -135,7 +135,7 @@ def star_data_input(files):
 	print(comp_set)
 	return star_df,comp_set
 
-                  
+@st.cache(allow_output_mutation=True)             
 def star_data_input_zip(files):
 	cols = [0,1,2,3,5,6,7,8,12,13,14,15,17,18,19,20,24,25,26,27,29,30,31,32,34]
 	star_df = pd.DataFrame()
