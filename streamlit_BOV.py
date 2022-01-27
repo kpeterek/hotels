@@ -269,7 +269,8 @@ def main():
 	elif choice == 'Comp Search':
 		keys = st.sidebar.text_input("search hotel keywords")
 		submit = st.sidebar.button('Search Hotel')
-		chain_scale = st.sidebar.multiselect('Filter Comps by Chain Scale',str_census['Chain Scale'].unique(),default=str_census['Chain Scale'].unique())
+		scales = list(str_census['Chain Scale'].unique())
+		chain_scale = st.sidebar.multiselect('Filter Comps by Chain Scale',str_census['Chain Scale'].unique(),default=scales)
 		data = pd.DataFrame()
 		hotel = pd.DataFrame()
 		comps = pd.DataFrame()
