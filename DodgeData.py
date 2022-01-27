@@ -103,8 +103,8 @@ def str_lookup(keys):
     keywords = list(keys.lower().split(' '))
     perms = list(set(map(' '.join, more_itertools.powerset(keywords))))
     candidates = []
-    df_op = str_census
-    df_nc = str_pipeline
+    df_op = pd.read_csv('str_census_small.csv')
+    df_nc = pd.read_csv('pipeline.csv') 
     # keywords = list(input('Enter Hotel Name Keywords:').lower().split(' '))
     for word in perms:
         df_op = str_census
