@@ -105,14 +105,13 @@ def str_lookup(keys):
     candidates = []
     df_op = pd.read_csv('str_census_small.csv')
     df_nc = pd.read_csv('pipeline.csv') 
-    # keywords = list(input('Enter Hotel Name Keywords:').lower().split(' '))
+    #keywords = list(input('Enter Hotel Name Keywords:').lower().split(' '))
     for word in perms:
-        df_op = str_census
         if len(df_op[df_op['Hotel Name'].str.lower().str.contains(word)]) > 0:
             df_op = df_op[df_op['Hotel Name'].str.lower().str.contains(word)]
             cand_temp_list = df_op['Hotel Name'] + ' - ' + df_op['STR Number'].astype(str)
             candidates.extend(cand_temp_list)
-    return pd.Series(candidates).value_counts().head(10)
+    return pd.Series(candidates).value_counts().head(20)
 
 
 @st.cache(allow_output_mutation=True)
