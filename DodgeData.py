@@ -98,33 +98,24 @@ def compset(STR,radius):
     return output_df
 
 @st.cache(allow_output_mutation=True)
-def str_lookup(keys,searchby = 'name',operational = 'y'):
+def str_lookup(keys):
     keys = re.sub('[^0-9a-zA-Z]+', ' ',keys)
     keywords = list(keys.lower().split(' '))
     perms = list(set(map(' '.join, more_itertools.powerset(keywords))))
     candidates = []
     df_op = str_census
     df_nc = str_pipeline
-    if searchby == 'name':
-        # keywords = list(input('Enter Hotel Name Keywords:').lower().split(' '))
-        if operational == 'y':
-            for word in perms:
-                df_op = str_census
-                # print(word)
-                if len(df_op[df_op['Hotel Name'].str.lower().str.contains(word)]) > 0:
-                    df_op = df_op[df_op['Hotel Name'].str.lower().str.contains(word)]
-                    cand_temp_list = df_op['Hotel Name'] + ' - ' + df_op['STR Number'].astype(str)
-                    candidates.extend(cand_temp_list)
-            return pd.Series(candidates).value_counts().head(10)
-        else:
-            for word in perms:
-                df_nc = str_pipeline
-                if len(df_nc[df_nc['Project Name'].str.lower().str.contains(word)]) > 0:
-                    df_nc = df_nc[df_nc['Project Name'].str.lower().str.contains(word)]
-                    cand_temp_list = df_nc['Project Name'] + ' - ' + df_nc['Project ID'].astype(str)
-                    candidates.extend(cand_temp_list)
-        return pd.Series(candidates).value_counts().head(10)
-   
+    # keywords = list(input('Enter Hotel Name Keywords:').lower().split(' '))
+    for word in perms:
+        df_op = str_census
+        # print(word)
+        if len(df_op[df_op['Hotel Name'].str.lower().str.contains(word)]) > 0:
+            df_op = df_op[df_op['Hotel Name'].str.lower().str.contains(word)]
+            cand_temp_list = df_op['Hotel Name'] + ' - ' + df_op['STR Number'].astype(str)
+            candidates.extend(cand_temp_list)
+    return pd.Series(candidates).value_counts().head(10)
+
+
 @st.cache(allow_output_mutation=True)
 def nearby_comps_str(STR,radius=7):
     R = 3958.756
