@@ -97,7 +97,7 @@ def compset(STR,radius):
     output_df.sort_values('distance',ascending = True,inplace=True)
     return output_df
 
-@st.cache()
+
 def str_lookup(keys):
     keys = re.sub('[^0-9a-zA-Z]+', ' ',keys)
     keywords = list(keys.lower().split(' '))
