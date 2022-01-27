@@ -128,5 +128,6 @@ def nearby_comps_str(STR,radius=7):
     return distance_census
 
 def str_find(star):
+    str_census = pd.read_csv('str_census_small.csv')
     ret_df = str_census[str_census['STR Number'] == int(star)]
     return ret_df.T
