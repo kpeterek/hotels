@@ -97,7 +97,7 @@ def compset(STR,radius):
     output_df.sort_values('distance',ascending = True,inplace=True)
     return output_df
 
-@st.cache(allow_output_mutation=True)
+@st.cache()
 def str_lookup(keys):
     keys = re.sub('[^0-9a-zA-Z]+', ' ',keys)
     keywords = list(keys.lower().split(' '))
@@ -114,7 +114,7 @@ def str_lookup(keys):
     return pd.Series(candidates).value_counts().head(20)
 
 
-@st.cache(allow_output_mutation=True)
+@st.cache()
 def nearby_comps_str(STR,radius=7):
     R = 3958.756
     prop_name = str_census['Hotel Name'][str_census['STR Number'] == STR].iloc[:,].item()
