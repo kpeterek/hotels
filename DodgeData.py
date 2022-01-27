@@ -97,14 +97,13 @@ def compset(STR,radius):
     output_df.sort_values('distance',ascending = True,inplace=True)
     return output_df
 
-
+@st.cache()
 def str_lookup(keys):
     keys = re.sub('[^0-9a-zA-Z]+', ' ',keys)
     keywords = list(keys.lower().split(' '))
     perms = list(set(map(' '.join, more_itertools.powerset(keywords))))
     candidates = []
     df_op = pd.read_csv('str_census_small.csv')
-    df_nc = pd.read_csv('pipeline.csv') 
     #keywords = list(input('Enter Hotel Name Keywords:').lower().split(' '))
     for word in perms:
         if len(df_op[df_op['Hotel Name'].str.lower().str.contains(word)]) > 0:
