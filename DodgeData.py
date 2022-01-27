@@ -108,7 +108,6 @@ def str_lookup(keys):
     # keywords = list(input('Enter Hotel Name Keywords:').lower().split(' '))
     for word in perms:
         df_op = str_census
-        # print(word)
         if len(df_op[df_op['Hotel Name'].str.lower().str.contains(word)]) > 0:
             df_op = df_op[df_op['Hotel Name'].str.lower().str.contains(word)]
             cand_temp_list = df_op['Hotel Name'] + ' - ' + df_op['STR Number'].astype(str)
