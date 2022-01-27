@@ -49,7 +49,8 @@ with open('AllSubmarketData.pkl', 'rb') as f:
 	kalibri_data = pickle.load(f)
 plot_cols = ['OCC_my_prop','ADR_my_prop','RevPAR_my_prop']
 name_str = pd.DataFrame(dodge_census[['Property','StarID']])
-
+str_census = pd.read_csv('str_census_small.csv')
+str_pipeline = pd.read_csv('pipeline.csv')
 
 
 def local_css(file_name):
