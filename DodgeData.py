@@ -23,7 +23,7 @@ cols_exist = ['StarID','Property','Address','City','State','postalcode','Rooms',
 str_census = pd.read_csv('str_census_small.csv')
 str_pipeline = pd.read_csv('pipeline.csv')
 
-@st.cache(allow_output_mutation=True)
+
 def newsupply(STR,radius=7,filter_by = 'radius'):
     # STR = int(input('Enter the Subject Property STR Number?: '))
     # radius = 40.0
@@ -65,7 +65,7 @@ def newsupply(STR,radius=7,filter_by = 'radius'):
  
 
     
-@st.cache(allow_output_mutation=True)
+
 def compset(STR,radius):
     STR = int(input('Enter the Subject Property STR Number?: '))
     radius = 10.0
@@ -97,7 +97,7 @@ def compset(STR,radius):
     output_df.sort_values('distance',ascending = True,inplace=True)
     return output_df
 
-@st.cache()
+
 def str_lookup(keys):
     keys = re.sub('[^0-9a-zA-Z]+', ' ',keys)
     keywords = list(keys.lower().split(' '))
@@ -113,7 +113,7 @@ def str_lookup(keys):
     return pd.Series(candidates).value_counts().head(20)
 
 
-@st.cache()
+
 def nearby_comps_str(STR,radius=7):
     R = 3958.756
     prop_name = str_census['Hotel Name'][str_census['STR Number'] == STR].iloc[:,].item()
